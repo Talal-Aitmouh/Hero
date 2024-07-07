@@ -2,13 +2,12 @@
 include './traitement/dashboard.php';
 // session_start();
 
-// // Check if the user is logged in, otherwise redirect to login page
 // if (!isset($_SESSION['StaffID'])) {
 //     header("Location: login/index.php");
 //     exit();
 // }
 
-// // Fetch user details from session
+
 // $fullName = $_SESSION['FullName'];
 // $email = $_SESSION['Email'];
 // $position = $_SESSION['Position'];
