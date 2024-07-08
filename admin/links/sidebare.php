@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="nav-item <?php echo ($current_page == 'booking') ? 'active' : ''; ?>">
-                    <a href="#base">
+                    <a href="booking.php">
                         <i class="fas fas fa-calendar"></i>
                         <p>Booking</p>
                     </a>
@@ -54,21 +54,33 @@
                     </a>
                 </li>
                 <li class="nav-item <?php echo ($current_page == 'staff') ? 'active' : ''; ?>">
-                    <a href="#base">
+                    <a href="staff.php">
                         <i class="fas fas fa-users"></i>
                         <p>Staff</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php echo ($current_page == 'Billing') ? 'active' : ''; ?>">
+                    <a href="#base">
+                        <i class="fas fa-credit-card"></i>
+                        <p>Billing</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php echo ($current_page == 'guests') ? 'active' : ''; ?>">
+                    <a href="guests.php">
+                        <i class="fas fa-user"></i>
+                        <p>Guests</p>
+                    </a>
+                </li>
+                <li class="nav-item <?php echo ($current_page == 'FeedBack') ? 'active' : ''; ?>">
+                    <a href="#base">
+                        <i class="fas fa-comment-alt"></i>
+                        <p>FeedBack</p>
                     </a>
                 </li>
                 <li class="nav-item <?php echo ($current_page == 'setting') ? 'active' : ''; ?>">
                     <a href="#base">
                         <i class="fas fas fa-cog"></i>
                         <p>Setting</p>
-                    </a>
-                </li>
-                <li class="nav-item <?php echo ($current_page == 'quests') ? 'active' : ''; ?>">
-                    <a href="#base">
-                        <i class="fas fa-user"></i>
-                        <p>Guests</p>
                     </a>
                 </li>
                 <li class="nav-item">

@@ -5,7 +5,7 @@
 <body>
     <div class="wrapper">
     <?php
-        $current_page = 'staff';
+        $current_page = 'booking';
         include './links/sidebare.php'; ?>
     </div>
         <!-- end sidebar -->
@@ -14,11 +14,11 @@
             <div class="container">
                 <div class="page-inner">
                     <div class="page-header">
-                        <h3 class="fw-bold mb-3">Staff</h3>
+                        <h3 class="fw-bold mb-3">Booking</h3>
                         <ul class="breadcrumbs mb-3">
                             <li class="nav-home">
                                 <a href="#">
-                                    <i class="fas fas fa-users"></i>
+                                    <i class="fas fas fa-calendar"></i>
                                 </a>
                             </li>
 
@@ -30,10 +30,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="card-title">Add Staff</h4>
+                                    <h4 class="card-title">Add a reservation</h4>
                                     <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
                                         <i class="fa fa-plus"></i>
-                                        Add Staff
+                                        Add a reservation
                                     </button>
                                 </div>
                             </div>
@@ -99,6 +99,7 @@
                                                 <th>Type</th>
                                                 <th>Description</th>
                                                 <th>Amount</th>
+                                                <th>Actions</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
@@ -109,6 +110,7 @@
                                                 <td>System Architect</td>
                                                 <td>Edinburgh</td>
                                                 <td>Emely</td>
+                                                <td>kara</td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
