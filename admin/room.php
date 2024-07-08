@@ -70,90 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-background-color="dark">
-            <div class="sidebar-logo">
-                <!-- Logo Header -->
-                <div class="logo-header" data-background-color="dark">
-                    <a href="index.php" class="logo">
-                        <img src="assets/img/kaiadmin/logo_light.png" alt="navbar brand" class="navbar-brand" height="50" />
-                    </a>
-                    <div class="nav-toggle">
-                        <button class="btn btn-toggle toggle-sidebar">
-                            <i class="gg-menu-right"></i>
-                        </button>
-                        <button class="btn btn-toggle sidenav-toggler">
-                            <i class="gg-menu-left"></i>
-                        </button>
-                    </div>
-                    <button class="topbar-toggler more">
-                        <i class="gg-more-vertical-alt"></i>
-                    </button>
-                </div>
-                <!-- End Logo Header -->
-            </div>
-            <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                <div class="sidebar-content">
-                    <ul class="nav nav-secondary">
-                        <li class="nav-item">
-                            <a href="index.php">
-                                <i class="fas fa-home"></i>
-                                <p>Home</p>
-                            </a>
-
-                        </li>
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Components</h4>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="#base">
-                                <i class="fas fas fa-bed"></i>
-                                <p>Rooms</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#base">
-                                <i class="fas fas fa-calendar"></i>
-                                <p>Booking</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#base">
-                                <i class="fas fas fa-concierge-bell"></i>
-                                <p>Service</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#base">
-                                <i class="fas fas fa-users"></i>
-                                <p>Staff</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#base">
-                                <i class="fas fas fa-cog"></i>
-                                <p>Setting</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#base">
-                                <i class="fas fa-user"></i>
-                                <p>Guests</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#base">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>Logout</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <?php
+      $current_page = 'room';
+      include './links/sidebare.php'; ?>
+    </div>
         <!-- end sidebar -->
         <div class="main-panel">
             <?php include './links/customer.php' ?>
@@ -220,7 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                '<?php echo $room['Price']; ?>', 
                                '<?php echo $room['Description']; ?>', 
                                '<?php echo $room['NumberBed']; ?>', 
-                               '<?php echo $room['BedType']; ?>')">
+                               '<?php echo $room['BedType']; ?>',
+                               '<?php echo $room['quantity']; ?>')">
                                                                 <i class="fas fa-eye"></i>
                                                             </button>
 
@@ -304,6 +225,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                                 <input id="addBedType" name="BedType" type="text" class="form-control" placeholder="Type Bed" required />
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Quantity</label>
+                                                                <input id="addBedType" name="quantity" type="number" class="form-control" placeholder="Quantity" required />
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -359,6 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                     <li class="list-group-item"><strong>Description:  </strong> <span id="roomDescription"></span></li>
                                                     <li class="list-group-item"><strong>Number Bed:  </strong> <span id="roomNumberBed"></span></li>
                                                     <li class="list-group-item"><strong>Type Bed:  </strong> <span id="roomBedType"></span></li>
+                                                    <li class="list-group-item"><strong>Quantity:  </strong> <span id="roomquantity"></span></li>
                                                 </ul>
                                                 <button type="button" class="btn btn-danger mt-3" onclick="closeModal2()">Close</button>
                                             </div>
@@ -429,6 +357,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                             <div class="form-group form-group-default">
                                                                 <label>Type Bed</label>
                                                                 <input id="editBedType" name="BedType" type="text" class="form-control" placeholder="Type Bed" required />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Quantity</label>
+                                                                <input id="editquantity" name="quantity" type="number" class="form-control" placeholder="Quantity" required />
                                                             </div>
                                                         </div>
                                                     </div>

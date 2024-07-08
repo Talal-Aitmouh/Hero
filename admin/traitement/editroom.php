@@ -19,6 +19,7 @@ if (isset($_POST["submit"])) {
     $description = mysqli_real_escape_string($conn, $_POST['Description']);
     $numberBed = mysqli_real_escape_string($conn, $_POST['NumberBed']);
     $bedType = mysqli_real_escape_string($conn, $_POST['BedType']);
+    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
 
     $upload_dir = '../../img/rooms/';
     if (!is_dir($upload_dir)) {
@@ -34,7 +35,7 @@ if (isset($_POST["submit"])) {
     }
 
     $sql = "UPDATE Rooms SET RoomName='$name', Type='$type', Capacity='$capacity', Price='$price', 
-            Description='$description', NumberBed='$numberBed', BedType='$bedType'";
+            Description='$description', NumberBed='$numberBed', BedType='$bedType', quantity='$quantity' ";
     if ($photo_path !== '') {
         $sql .= ", Photo='$photo'";
     }

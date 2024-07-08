@@ -73,7 +73,7 @@
         }
     </script>
 <script>
-function openModal2(photo, name, type, capacity, price, description, numberBed, bedType) {
+function openModal2(photo, name, type, capacity, price, description, numberBed, bedType, quantity) {
     document.getElementById('roomImage').src = '../img/rooms/' + photo;
     document.getElementById('roomName').innerText = name;
     document.getElementById('roomType').innerText = type;
@@ -82,6 +82,8 @@ function openModal2(photo, name, type, capacity, price, description, numberBed, 
     document.getElementById('roomDescription').innerText = description;
     document.getElementById('roomNumberBed').innerText = numberBed;
     document.getElementById('roomBedType').innerText = bedType;
+    document.getElementById('roomquantity').innerText = quantity;
+
     
     // Show the modal
     var modal = document.getElementById('show');
@@ -94,7 +96,7 @@ function closeModal2() {
 }
 </script>
 <script>
-function openEditRoomModal(roomID, photo, name, type, capacity, price, description, numberBed, bedType) {
+function openEditRoomModal(roomID, photo, name, type, capacity, price, description, numberBed, bedType, quantity) {
     document.getElementById('editRoomID').value = roomID;
     document.getElementById('editName').value = name;
     document.getElementById('editType').value = type;
@@ -103,6 +105,7 @@ function openEditRoomModal(roomID, photo, name, type, capacity, price, descripti
     document.getElementById('editDescription').value = description;
     document.getElementById('editNumberBed').value = numberBed;
     document.getElementById('editBedType').value = bedType;
+    document.getElementById('editquantity').value = quantity;
 
     var modal = document.getElementById('edit');
     modal.style.display = 'block';

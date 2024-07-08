@@ -19,6 +19,7 @@ if (isset($_POST["submit"])) {
     $description = mysqli_real_escape_string($conn, $_POST['Description']);
     $numberBed = mysqli_real_escape_string($conn, $_POST['NumberBed']);
     $bedType = mysqli_real_escape_string($conn, $_POST['BedType']);
+    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
 
     $photo = $_FILES['Photo']['name'];
     $photo_temp = $_FILES['Photo']['tmp_name'];
@@ -30,8 +31,8 @@ if (isset($_POST["submit"])) {
     }
 
     if (move_uploaded_file($photo_temp, $photo_path)) {
-        $sql = "INSERT INTO Rooms (RoomName, Type, Capacity, Price, Description, Photo, NumberBed, BedType) 
-                VALUES ('$name', '$type', '$capacity', '$price', '$description', '$photo', '$numberBed', '$bedType')";
+        $sql = "INSERT INTO Rooms (RoomName, Type, Capacity, Price, Description, Photo, NumberBed, BedType, quantity) 
+                VALUES ('$name', '$type', '$capacity', '$price', '$description', '$photo', '$numberBed', '$bedType', '$quantity')";
 
         if ($conn->query($sql) === TRUE) {
             $roomID = $conn->insert_id; // Get the last inserted RoomID
