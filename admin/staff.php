@@ -1,3 +1,7 @@
+<?php
+include './traitement/staff.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './links/links.php' ?>
@@ -95,20 +99,21 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Type</th>
-                                                <th>Description</th>
-                                                <th>Amount</th>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Position</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
+                                            <?php foreach($staffs as $staff) : ?>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>Emely</td>
+                                                <td><?php echo $staff['FullName'] ?></td>
+                                                <td><?php echo $staff['Email'] ?></td>
+                                                <td><?php echo $staff['Phone'] ?></td>
+                                                <td><?php echo $staff['Position'] ?></td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
@@ -120,7 +125,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
