@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                            <!-- Add more rows as needed -->
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -362,7 +362,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                         <div class="col-md-6">
                                                             <div class="form-group form-group-default">
                                                                 <label>Quantity</label>
-                                                                <input id="editquantity" name="quantity" type="number" class="form-control" placeholder="Quantity" required />
+                                                                <input id="editquantity" name="quantity" type="number" class="form-control" placeholder="Quantity"  />
                                                             </div>
                                                         </div>
                                                     </div>

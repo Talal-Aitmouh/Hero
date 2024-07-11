@@ -1,3 +1,7 @@
+<?php
+include './traitement/booking.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './links/links.php' ?>
@@ -95,22 +99,23 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Type</th>
-                                                <th>Description</th>
-                                                <th>Amount</th>
-                                                <th>Actions</th>
+                                                <th>Name Room</th>
+                                                <th>Guest</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Total Amount</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
+                                        <?php foreach ($reservations as $reservation) : ?>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>Emely</td>
-                                                <td>kara</td>
+                                                <td><?php echo $reservation['RoomName']; ?></td>
+                                                <td><?php echo $reservation['GuestName']; ?></td>
+                                                <td><?php echo $reservation['CheckInDate']; ?> --> <?php echo $reservation['CheckOutDate']; ?></td>
+                                                <td><?php echo $reservation['Status']; ?></td>
+                                                <td><?php echo $reservation['TotalAmount']; ?></td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
@@ -122,6 +127,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <?php endforeach; ?>
 
                                         </tbody>
                                     </table>
