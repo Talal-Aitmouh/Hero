@@ -1,3 +1,7 @@
+<?php
+include './traitement/guests.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './links/links.php' ?>
@@ -95,22 +99,23 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Type</th>
-                                                <th>Description</th>
-                                                <th>Amount</th>
-                                                <th>Actions</th>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>CheckInDate</th>
+                                                <th>CheckOutDate</th>
                                                 <th style="width: 10%">Action</th>
                                             </tr>
                                         </thead>
                                         
                                         <tbody>
+                                            <?php foreach($guests as $guest) : ?>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>Emely</td>
-                                                <td>kara</td>
+                                                <td><?php echo $guest['Name'] ?></td>
+                                                <td><?php echo $guest['Email'] ?> </td>
+                                                <td><?php echo $guest['Phone'] ?></td>
+                                                <td><?php echo $guest['CheckInDate'] ?></td>
+                                                <td><?php echo $guest['CheckOutDate'] ?></td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
@@ -119,10 +124,13 @@
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                             <i class="fa fa-times"></i>
                                                         </button>
+                                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Remove">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
