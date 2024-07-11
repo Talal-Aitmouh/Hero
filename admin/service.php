@@ -1,3 +1,7 @@
+<?php
+include './traitement/service.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './links/links.php' ?>
@@ -104,11 +108,12 @@
                                         </thead>
 
                                         <tbody>
+                                        <?php foreach ($services as $service) : ?>
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>Emely</td>
+                                                <td><?php echo $service['Name']; ?></td>
+                                                <td><?php echo $service['Type']; ?></td>
+                                                <td><?php echo $service['Description']; ?></td>
+                                                <td><?php echo $service['Amount']; ?></td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
@@ -120,7 +125,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
