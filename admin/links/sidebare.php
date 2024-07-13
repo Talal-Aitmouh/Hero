@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item <?php echo ($current_page == 'FeedBack') ? 'active' : ''; ?>">
-                    <a href="#base">
+                    <a href="feedback.php">
                         <i class="fas fa-comment-alt"></i>
                         <p>FeedBack</p>
                     </a>
