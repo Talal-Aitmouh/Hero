@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item <?php echo ($current_page == 'Billing') ? 'active' : ''; ?>">
-                    <a href="#base">
+                    <a href="billing.php">
                         <i class="fas fa-credit-card"></i>
                         <p>Billing</p>
                     </a>
