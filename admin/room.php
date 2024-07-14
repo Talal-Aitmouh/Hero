@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                         <i class="fa fa-plus"></i>
                                         Add Room
                                     </button> -->
-                                    <button type="button" class="btn btn-primary btn-round ms-auto" onclick="openModal()">Add Room</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#addRowModal" class="btn btn-primary btn-round ms-auto" onclick="openModal()">Add Room</button>
 
                                 </div>
                             </div>
@@ -162,8 +162,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                 </div>
 
                                 <!-- Modal for adding a room -->
-                                <div id="addRoomModal" class="modal" role="dialog">
-                                    <div class="modal-dialog modal-lg" role="document">
+                                <div id="addRoomModal" class="modal " tabindex="-1" aria-hidden="true"  role="dialog">
+                                    <div class="modal-dialog modal-xl"  role="document">
                                         <div class="modal-content  ">
                                             <div class="modal-header border-0 ">
                                                 <h5 class="modal-title">
@@ -177,55 +177,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                             <div class="modal-body">
                                                 <form id="addRoomForm" action="./traitement/addroom.php" method="POST" enctype="multipart/form-data">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Name</label>
                                                                 <input id="addName" name="Name" type="text" class="form-control" placeholder="Name" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Image</label>
                                                                 <input id="addPhoto" name="Photo" type="file" class="form-control" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Type</label>
                                                                 <input id="addType" name="Type" type="text" class="form-control" placeholder="Type" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Capacity</label>
                                                                 <input id="addCapacity" name="Capacity" type="number" class="form-control" placeholder="Capacity" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Price</label>
                                                                 <input id="addPrice" name="Price" type="text" class="form-control" placeholder="Price" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Description</label>
                                                                 <input id="addDescription" name="Description" type="text" class="form-control" placeholder="Description" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Number Bed</label>
                                                                 <input id="addNumberBed" name="NumberBed" type="number" class="form-control" placeholder="Number Bed" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Type Bed</label>
                                                                 <input id="addBedType" name="BedType" type="text" class="form-control" placeholder="Type Bed" required />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group form-group-default">
                                                                 <label>Quantity</label>
                                                                 <input id="addBedType" name="quantity" type="number" class="form-control" placeholder="Quantity" required />
