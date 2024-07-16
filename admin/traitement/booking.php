@@ -66,6 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Delete the booking
             $query = "DELETE FROM Booking WHERE BookingID = '$bookingID'";
             mysqli_query($conn, $query);
+
+            // Delete the billing information
+            $query = "DELETE FROM Billing WHERE BookingID = '$bookingID'";
+            mysqli_query($conn, $query);
         }
         header('Location: ../booking.php');
         exit;
@@ -107,14 +111,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Update services
         // First, delete existing service bookings
-        $query = "DELETE FROM ServiceBooking WHERE BookingID = '$bookingID'";
-        mysqli_query($conn, $query);
+        
 
         // Then, add new service bookings
         if (isset($_POST['services'])) {
             foreach ($_POST['services'] as $serviceID) {
-                $query = "INSERT INTO ServiceBooking (BookingID, ServiceID) VALUES ('$bookingID', '$serviceID')";
-                mysqli_query($conn, $query);
+                
 
                 // Update the total amount with service cost
                 $query = "SELECT Amount FROM Service WHERE ServiceID = '$serviceID'";
@@ -127,6 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 mysqli_query($conn, $query);
             }
         }
+
+        // Update billing information
+        $paymentStatus = ($status == 'Booked') ? 'Paid' : 'Pending'; // Update payment status based on booking status
+        $query = "UPDATE Billing SET TotalAmount='$totalAmount', PaymentStatus='$paymentStatus' WHERE BookingID='$bookingID'";
+        mysqli_query($conn, $query);
 
         header('Location: ../booking.php');
         exit;
@@ -182,15 +189,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Insert booking information
             $status = 'Booked'; // Initial status
             $query = "INSERT INTO Booking (CheckInDate, CheckOutDate, TotalAmount, Status, GuestID, RoomID) VALUES ('$checkInDate', '$checkOutDate', '$totalAmount', '$status', '$guestID', '$roomID')";
-            mysqli_query($conn, $query);
+            if (mysqli_query($conn, $query)) {
+                $bookingID = mysqli_insert_id($conn);
 
-            // Decrement the quantity of rooms available
-            $newRoomQuantity = $roomQuantity - $quantity;
-            $query = "UPDATE Rooms SET Quantity = '$newRoomQuantity' WHERE RoomID = '$roomID'";
-            mysqli_query($conn, $query);
+                // Insert billing information
+                $paymentStatus = ($status == 'Booked') ? 'Paid' : 'Pending'; // Initial payment status based on booking status
+                $query = "INSERT INTO Billing (TotalAmount, PaymentStatus, BookingID, GuestID) VALUES ('$totalAmount', '$paymentStatus', '$bookingID', '$guestID')";
+                mysqli_query($conn, $query);
 
-            header('Location: ../booking.php');
-            exit;
+                // Decrement the quantity of rooms available
+                $newRoomQuantity = $roomQuantity - $quantity;
+                $query = "UPDATE Rooms SET Quantity = '$newRoomQuantity' WHERE RoomID = '$roomID'";
+                mysqli_query($conn, $query);
+
+                header('Location: ../booking.php');
+                exit;
+            }
         }
     }
 }

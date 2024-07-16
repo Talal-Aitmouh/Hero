@@ -151,7 +151,7 @@ include './traitement/service.php'
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="./traitement/deleteservice.php" method="post">
+                                            <form action="./traitement/editservice.php" method="post">
                                                 <input type="hidden" id="editServiceID" name="service_id">
                                                 <div class="row">
                                                     <div class="col-md-6">
