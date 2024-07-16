@@ -38,6 +38,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_service'])) {
     $stmt->close();
 }
 
+if (isset($_POST['delete_service'])) {
+    $serviceID = $_POST['delete_service'];
+
+    // Prepare the delete statement
+    $sql = "DELETE FROM Service WHERE ServiceID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $serviceID);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        header("Location: ../service.php");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    // Close the statement
+    $stmt->close();
+}
+
 // Close the connection
 $conn->close();
 ?>

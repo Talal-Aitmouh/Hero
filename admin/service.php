@@ -119,7 +119,7 @@ include './traitement/service.php'
                                                 <td><?php echo $service['Description']; ?></td>
                                                 <td><?php echo $service['Amount']; ?></td>
                                                 <td>
-                                                    <form action="./traitement/service.php" method="post">
+                                                    <form action="./traitement/editservice.php" method="post">
                                                         <div class="form-button-action">
                                                             <button type="button" class="btn btn-link btn-primary btn-lg" name="edit" data-bs-toggle="modal" data-bs-target="#EditModal" data-id="<?php echo $service['ServiceID']; ?>" data-name="<?php echo $service['Name']; ?>" data-type="<?php echo $service['Type']; ?>" data-description="<?php echo $service['Description']; ?>" data-amount="<?php echo $service['Amount']; ?>">
                                                                 <i class="fa fa-edit"></i>
