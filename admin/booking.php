@@ -87,7 +87,7 @@ include './traitement/booking.php'
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header border-0">
                                             <h5 class="modal-title">

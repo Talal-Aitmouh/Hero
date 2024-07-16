@@ -125,3 +125,55 @@ window.onclick = function(event) {
 }
 
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    var editModal = document.getElementById('EditModal');
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        var serviceId = button.getAttribute('data-id');
+        var serviceName = button.getAttribute('data-name');
+        var serviceType = button.getAttribute('data-type');
+        var serviceDescription = button.getAttribute('data-description');
+        var serviceAmount = button.getAttribute('data-amount');
+
+        // Update the modal's content.
+        var modalServiceID = editModal.querySelector('#editServiceID');
+        var modalServiceName = editModal.querySelector('#editName');
+        var modalServiceType = editModal.querySelector('#editType');
+        var modalServiceDescription = editModal.querySelector('#editDescription');
+        var modalServiceAmount = editModal.querySelector('#editAmount');
+
+        modalServiceID.value = serviceId;
+        modalServiceName.value = serviceName;
+        modalServiceType.value = serviceType;
+        modalServiceDescription.value = serviceDescription;
+        modalServiceAmount.value = serviceAmount;
+    });
+});
+</script>
+<script>
+    function confirmDelete(serviceId) {
+        if (confirm("Are you sure you want to delete this service?")) {
+            // Submit the form with the service ID to delete_service.php
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = './traitement/editservice.php'; // Adjust the action URL as needed
+
+            var serviceIdField = document.createElement('input');
+            serviceIdField.type = 'hidden';
+            serviceIdField.name = 'service_id';
+            serviceIdField.value = serviceId;
+
+            var deleteField = document.createElement('input');
+            deleteField.type = 'hidden';
+            deleteField.name = 'delete_service';
+            deleteField.value = '1';
+
+            form.appendChild(serviceIdField);
+            form.appendChild(deleteField);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+    </script>
