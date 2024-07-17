@@ -131,7 +131,14 @@ include './traitement/guests.php'
                                                 <td><?php echo $guest['CheckOutDate'] ?></td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                                        <button type="button" title="Edit" name="update" class="btn btn-link btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Editguests" data-id ="<?php echo $guest['GuestID'];?>" 
+                                                        data-name="<?php echo $guest['Name'];?>" 
+                                                        data-email="<?php echo $guest['Email'];?>" 
+                                                        data-phone="<?php echo $guest['Phone'];?>"
+                                                        data-address=""
+                                                        data-nationality="<?php echo $guest['Nationality'];?>">
+                                                        
+                                                   
                                                             <i class="fa fa-edit"></i>
                                                         </button>
                                                         <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
@@ -146,6 +153,68 @@ include './traitement/guests.php'
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="modal fade" id="Editguests" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title">
+                                                <span class="fw-mediumbold"> New</span>
+                                                <span class="fw-light"> Guest </span>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form action="./traitement/guests.php" method="post">
+                                                <div class="row">
+                                                <input type="hidden" id="editguestId" name="guestid" />
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Name</label>
+                                                            <input name="name" id="editName" type="text" class="form-control" placeholder="Enter name" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Phone</label>
+                                                            <input name="phone" id="editPhone" type="text" class="form-control" placeholder="Enter phone number" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Nationality</label>
+                                                            <input name="nationality" id="editNationality" type="text" class="form-control" placeholder="Enter nationality" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Email</label>
+                                                            <input name="email" id="editEmail" type="email" class="form-control" placeholder="Enter email" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Address</label>
+                                                            <input name="address" id="editAddress2" type="text" class="form-control" placeholder="Enter address" />
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="modal-footer border-0">
+                                                    <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
