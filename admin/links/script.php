@@ -152,28 +152,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 </script>
 <script>
-    function confirmDelete(serviceId) {
-        if (confirm("Are you sure you want to delete this service?")) {
-            // Submit the form with the service ID to delete_service.php
-            var form = document.createElement('form');
-            form.method = 'post';
-            form.action = './traitement/editservice.php'; // Adjust the action URL as needed
+document.addEventListener('DOMContentLoaded', (event) => {
+    var editModal = document.getElementById('Editstaff');
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        var staffId = button.getAttribute('data-id2');
+        var staffName = button.getAttribute('data-name2');
+        var staffEmail = button.getAttribute('data-email2');
+        var staffPhone = button.getAttribute('data-phone2');
+        var staffPassword = button.getAttribute('data-password2');
+        var staffPosition = button.getAttribute('data-position2');
 
-            var serviceIdField = document.createElement('input');
-            serviceIdField.type = 'hidden';
-            serviceIdField.name = 'service_id';
-            serviceIdField.value = serviceId;
+        // Update the modal's content.
+        var modalStaffID = editModal.querySelector('#editstaffId');
+        var modalStaffName = editModal.querySelector('#editname');
+        var modalStaffEmail = editModal.querySelector('#editemail');
+        var modalStaffPhone = editModal.querySelector('#editphone');
+        var modalStaffPassword = editModal.querySelector('#editpassword');
+        var modalStaffPosition = editModal.querySelector('#editposition');
 
-            var deleteField = document.createElement('input');
-            deleteField.type = 'hidden';
-            deleteField.name = 'delete_service';
-            deleteField.value = '1';
-
-            form.appendChild(serviceIdField);
-            form.appendChild(deleteField);
-
-            document.body.appendChild(form);
-            form.submit();
-        }
-    }
-    </script>
+        modalStaffID.value = staffId;
+        modalStaffName.value = staffName;
+        modalStaffEmail.value = staffEmail;
+        modalStaffPhone.value = staffPhone;
+        modalStaffPassword.value = staffPassword;
+        modalStaffPosition.value = staffPosition;
+    });
+});
+</script>
