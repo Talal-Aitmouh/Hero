@@ -1,3 +1,7 @@
+<?php
+include './traitement/feedback.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './links/links.php' ?>
@@ -46,18 +50,18 @@
                             </div>
                         </div>
                         <div class="border p-3 mb-3">
+                        <?php foreach ($feedbacks as $feedback) : ?>
                             <div class="d-flex align-items-center">
                                 <img src="./assets/img/wild.jpg" alt="Ronald Richards" class="rounded-circle me-3" width="60">
                                 <div>
-                                    <h6 class="mb-0">Donna Koli</h6>
+                                    <h6 class="mb-0"><?php echo $feedback['name'] ?></h6>
                                     <p class="mb-0">5.0 ★★★★★</p>
                                 </div>
                             </div>
                             <div class="mt-3">
-                                <p class="mb-1"><strong>Status:</strong> Purchased from seller</p>
-                                <p class="mb-1"><strong>Purchase date:</strong> Nov 6, 2023</p>
-                                <p class="mb-1"><strong>Location:</strong> Czech Republic</p>
-                                <p>Great products! I just love everything about this website, their customer support and other. I will surely continue buying from them!</p>
+                                <p class="mb-1"><strong>Purchase date:</strong> <?php echo $feedback['date'] ?></p>
+                                <p class="mb-1"><strong>Rating:</strong> <?php echo $feedback['rating'] ?>%</p>
+                                <p><?php echo $feedback['comments'] ?></p>
                                 <div class="d-flex">
                                     <button class="btn btn-link">Reply</button>
                                     <button class="btn btn-link">Share</button>
@@ -76,6 +80,7 @@
                                 </div>
                             </div>
                             <a href="#" class="text-decoration-none">Show more</a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
