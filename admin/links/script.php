@@ -180,3 +180,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    var editModal = document.getElementById('Editguests');
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        var guestId = button.getAttribute('data-id');
+        var guestName = button.getAttribute('data-name');
+        var guestEmail = button.getAttribute('data-email');
+        var guestPhone = button.getAttribute('data-phone');
+        var guestAddress = button.getAttribute('data-address');
+        var guestNationality = button.getAttribute('data-nationality');
+
+        // Update the modal's content.
+        var modalGuestID = editModal.querySelector('#editguestId');
+        var modalGuestName = editModal.querySelector('#editName');
+        var modalGuestEmail = editModal.querySelector('#editEmail');
+        var modalGuestPhone = editModal.querySelector('#editPhone');
+        var modalGuestAddress = editModal.querySelector('#editAddress2');
+        var modalGuestNationality = editModal.querySelector('#editNationality');
+
+        modalGuestID.value = guestId;
+        modalGuestName.value = guestName;
+        modalGuestEmail.value = guestEmail;
+        modalGuestPhone.value = guestPhone;
+        modalGuestAddress.value = guestAddress;
+        modalGuestNationality.value = guestNationality;
+    });
+});
+</script>

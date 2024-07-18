@@ -130,24 +130,20 @@ include './traitement/guests.php'
                                                 <td><?php echo $guest['CheckInDate'] ?></td>
                                                 <td><?php echo $guest['CheckOutDate'] ?></td>
                                                 <td>
-                                                    <div class="form-button-action">
-                                                        <button type="button" title="Edit" name="update" class="btn btn-link btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Editguests" data-id ="<?php echo $guest['GuestID'];?>" 
-                                                        data-name="<?php echo $guest['Name'];?>" 
-                                                        data-email="<?php echo $guest['Email'];?>" 
-                                                        data-phone="<?php echo $guest['Phone'];?>"
-                                                        data-address=""
-                                                        data-nationality="<?php echo $guest['Nationality'];?>">
-                                                        
-                                                   
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Remove">
-                                                            <i class="fa fa-eye"></i>
-                                                        </button>
-                                                    </div>
+                                                    <form action="./traitement/guests.php" method="post">
+                                                    <input type="hidden" name="guestid" value="<?php echo $guest['GuestID']; ?>" />
+                                                        <div class="form-button-action">
+                                                            <button type="button" title="Edit" name="update" class="btn btn-link btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Editguests" data-id="<?php echo $guest['GuestID']; ?>" data-name="<?php echo $guest['Name']; ?>" data-email="<?php echo $guest['Email']; ?>" data-phone="<?php echo $guest['Phone']; ?>" data-address="<?php echo $guest['Address']; ?>" data-nationality="<?php echo $guest['Nationality']; ?>">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                            <button type="submit" name="delete" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                            <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Remove" >
+                                                                <i class="fa fa-eye"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -170,7 +166,7 @@ include './traitement/guests.php'
 
                                             <form action="./traitement/guests.php" method="post">
                                                 <div class="row">
-                                                <input type="hidden" id="editguestId" name="guestid" />
+                                                    <input type="hidden" id="editguestId" name="guestid" />
 
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
@@ -206,9 +202,9 @@ include './traitement/guests.php'
 
 
                                                     <div class="modal-footer border-0">
-                                                    <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                </div>
+                                                        <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
