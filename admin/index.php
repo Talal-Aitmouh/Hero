@@ -56,7 +56,7 @@ include './traitement/dashboard.php';
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Guests</p>
-                        <h4 class="card-title"><?php echo $numg ?></h4>
+                        <h4 class="card-title"><?php echo $num_guests ?></h4>
                       </div>
                     </div>
                   </div>
@@ -76,7 +76,7 @@ include './traitement/dashboard.php';
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Ratting</p>
-                        <h4 class="card-title"><?php echo $percentage ?>%</h4>
+                        <h4 class="card-title"><?php echo $average_rating; ?>%</h4>
                       </div>
                     </div>
                   </div>

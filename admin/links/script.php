@@ -96,9 +96,10 @@ function closeModal2() {
 }
 </script>
 <script>
-function openEditRoomModal(roomID, photo, name, type, capacity, price, description, numberBed, bedType, quantity) {
+function openEditRoomModal(roomID, name, Photo, type, capacity, price, description, numberBed, bedType, quantity) {
     document.getElementById('editRoomID').value = roomID;
     document.getElementById('editName').value = name;
+    
     document.getElementById('editType').value = type;
     document.getElementById('editCapacity').value = capacity;
     document.getElementById('editPrice').value = price;
