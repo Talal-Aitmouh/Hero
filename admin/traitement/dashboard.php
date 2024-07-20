@@ -1,61 +1,55 @@
 <?php 
 include '../config/db.php';
 
-
-
-
-$sql = "SELECT SUM(TotalAmount) as total_amount FROM Billing";
+// Fetch total amount from billing
+$sql = "SELECT SUM(Amount) as total_amount FROM billing";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $total_amount = number_format($row['total_amount'], 2);
 
-$sqlBookingsCount = "SELECT COUNT(*) as num_bookings FROM Booking";
+// Fetch number of bookings
+$sqlBookingsCount = "SELECT COUNT(*) as num_bookings FROM booking";
 $resultBookingsCount = $conn->query($sqlBookingsCount);
 $rowb = $resultBookingsCount->fetch_assoc();
 $num_bookings = $rowb['num_bookings'];
 
-$sqlg = "SELECT COUNT(*) as num_g from Guests";
+// Fetch number of guests
+$sqlg = "SELECT COUNT(*) as num_guests FROM guests";
 $resultg = $conn->query($sqlg);
-$rowg = $resultg ->fetch_assoc();
-$numg = $rowb['num_bookings'];
+$rowg = $resultg->fetch_assoc();
+$num_guests = $rowg['num_guests'];
 
-$sqlCheckIns = "SELECT COUNT(*) as num_check_ins FROM Booking WHERE CheckInDate BETWEEN '2024-01-01' AND '2024-06-30'";
+// Fetch number of check-ins in a specific date range
+$sqlCheckIns = "SELECT COUNT(*) as num_check_ins FROM booking WHERE CheckInDate BETWEEN '2024-01-01' AND '2024-06-30'";
 $resultCheckIns = $conn->query($sqlCheckIns);
 $rowCheckIns = $resultCheckIns->fetch_assoc();
-$numcheck = $rowCheckIns['num_check_ins'];
+$num_check_ins = $rowCheckIns['num_check_ins'];
 
-
-$sqlTransactions = "SELECT t.TransactionID, t.Amount, t.Date,t.Description, g.Name as GuestName
-                    FROM Transactions t
-                    INNER JOIN Guests g ON t.GuestID = g.GuestID";
+// Fetch transaction details
+$sqlTransactions = "SELECT t.TransactionID, t.Amount, t.TransactionDate, t.PaymentMethod, t.TransactionStatus, g.FullName as GuestName
+                    FROM transactions t
+                    INNER JOIN billing b ON t.BillingID = b.BillingID
+                    INNER JOIN guests g ON b.GuestID = g.GuestID";
 $resultTransactions = $conn->query($sqlTransactions);
 
-
-
-$sqlTotalServiceAmount = "SELECT SUM(Amount) as total_amount FROM Service";
+// Fetch total service amount
+$sqlTotalServiceAmount = "SELECT SUM(Price) as total_service_amount FROM service";
 $resultTotalServiceAmount = $conn->query($sqlTotalServiceAmount);
 $rowTotalServiceAmount = $resultTotalServiceAmount->fetch_assoc();
-$total_service_amount = number_format($rowTotalServiceAmount['total_amount'], 2);
+$total_service_amount = number_format($rowTotalServiceAmount['total_service_amount'], 2);
 
-
-
-$sqlr = "SELECT SUM(Rating) as total_rating, COUNT(*) as total_feedbacks FROM Feedback";
+// Fetch feedback ratings
+$sqlr = "SELECT SUM(Rating) as total_rating, COUNT(*) as total_feedbacks FROM feedback";
 $resultr = $conn->query($sqlr);
 
 if ($resultr->num_rows > 0) {
-    // Output data of each row
-    while($rowr = $resultr->fetch_assoc()) {
-        $total_rating = $rowr['total_rating'];
-        $total_feedbacks = $rowr['total_feedbacks'];
-        $percentage = ($total_rating / $total_feedbacks);
-
-       
-    }
+    $rowr = $resultr->fetch_assoc();
+    $total_rating = $rowr['total_rating'];
+    $total_feedbacks = $rowr['total_feedbacks'];
+    $average_rating = ($total_feedbacks > 0) ? number_format($total_rating / $total_feedbacks, 2) : 0;
 } else {
-    echo "0 results";
+    $total_rating = $total_feedbacks = $average_rating = 0;
 }
+
 $conn->close();
-
-
-
 ?>
