@@ -18,36 +18,42 @@ if (isset($_POST["submit"])) {
     $price = mysqli_real_escape_string($conn, $_POST['Price']);
     $description = mysqli_real_escape_string($conn, $_POST['Description']);
     $numberBed = mysqli_real_escape_string($conn, $_POST['NumberBed']);
-    $bedType = mysqli_real_escape_string($conn, $_POST['BedType']);
+    $typeBed = mysqli_real_escape_string($conn, $_POST['TypeBed']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
 
-    $photo = $_FILES['Photo']['name'];
-    $photo_temp = $_FILES['Photo']['tmp_name'];
-    $photo_path = '../../img/rooms/' . $photo;
+    $wifi = isset($_POST['Wifi']) ? 1 : 0;
+    $tv = isset($_POST['TV']) ? 1 : 0;
+    $climatiseur = isset($_POST['Climatiseur']) ? 1 : 0;
+    $freeDrink = isset($_POST['FreeDrink']) ? 1 : 0;
+    $disponibility = isset($_POST['Disponibility']) ? 1 : 0;
+
+    $image = $_FILES['Photo']['name'];
+    $image_temp = $_FILES['Photo']['tmp_name'];
+    $image_path = '../../img/rooms/' . $image;
 
     $upload_dir = '../../img/rooms/';
     if (!is_dir($upload_dir)) {
         mkdir($upload_dir, 0777, true);
     }
 
-    if (move_uploaded_file($photo_temp, $photo_path)) {
-        $sql = "INSERT INTO Rooms (RoomName, Type, Capacity, Price, Description, Photo, NumberBed, BedType, quantity) 
-                VALUES ('$name', '$type', '$capacity', '$price', '$description', '$photo', '$numberBed', '$bedType', '$quantity')";
+    if (move_uploaded_file($image_temp, $image_path)) {
+        $sql = "INSERT INTO rooms (RoomName, Type, Capacity, Price, Description, Image, NumberBed, TypeBed, Quantity, Wifi, TV, Climatiseur, FreeDrink, Disponibility) 
+                VALUES ('$name', '$type', '$capacity', '$price', '$description', '$image', '$numberBed', '$typeBed', '$quantity', '$wifi', '$tv', '$climatiseur', '$freeDrink', '$disponibility')";
 
         if ($conn->query($sql) === TRUE) {
             $roomID = $conn->insert_id; // Get the last inserted RoomID
 
             // Handle additional images
             foreach ($_FILES['OtherPics']['tmp_name'] as $key => $tmp_name) {
-                $otherPhoto = $_FILES['OtherPics']['name'][$key];
+                $otherImage = $_FILES['OtherPics']['name'][$key];
                 $other_temp = $_FILES['OtherPics']['tmp_name'][$key];
-                $other_target_file = $upload_dir . basename($otherPhoto);
+                $other_target_file = $upload_dir . basename($otherImage);
 
                 if (move_uploaded_file($other_temp, $other_target_file)) {
-                    $sql = "INSERT INTO RoomImages (RoomID, ImageURL) VALUES ($roomID, '$otherPhoto')";
+                    $sql = "INSERT INTO roomimages (RoomID, ImagePath) VALUES ($roomID, '$otherImage')";
                     $conn->query($sql);
                 } else {
-                    echo "Failed to upload additional image: " . $otherPhoto;
+                    echo "Failed to upload additional image: " . $otherImage;
                 }
             }
 

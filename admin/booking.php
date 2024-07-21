@@ -54,22 +54,23 @@ include './traitement/booking.php'
                                             <th>Date</th>
                                             <th>Status</th>
                                             <th>Total Amount</th>
+                                            <th>Services</th> <!-- New column for Services -->
                                             <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <?php foreach ($reservations as $reservation) : ?>
                                             <tr>
-                                                <td><?php echo $reservation['RoomName']; ?></td>
-                                                <td><?php echo $reservation['GuestName']; ?></td>
-                                                <td><?php echo $reservation['CheckInDate']; ?> --> <?php echo $reservation['CheckOutDate']; ?></td>
-                                                <td><?php echo $reservation['Status']; ?></td>
-                                                <td><?php echo $reservation['TotalAmount']; ?></td>
+                                                <td><?php echo htmlspecialchars($reservation['RoomName']); ?></td>
+                                                <td><?php echo htmlspecialchars($reservation['GuestName']); ?></td>
+                                                <td><?php echo htmlspecialchars($reservation['CheckInDate']); ?> --> <?php echo htmlspecialchars($reservation['CheckOutDate']); ?></td>
+                                                <td><?php echo htmlspecialchars($reservation['Status']); ?></td>
+                                                <td><?php echo htmlspecialchars($reservation['TotalAmount']); ?></td>
+                                                <td><?php echo htmlspecialchars($reservation['Services']); ?></td> <!-- Display Services -->
                                                 <td>
                                                     <form action="./traitement/booking.php" method="POST">
                                                         <div class="form-button-action">
-                                                            <input type="hidden" name="bookingID" value="<?php echo $reservation['BookingID']; ?>">
+                                                            <input type="hidden" name="bookingID" value="<?php echo htmlspecialchars($reservation['BookingID']); ?>">
                                                             <button class="btn btn-link btn-primary btn-lg" type="button" data-bs-toggle="modal" name="edit" data-bs-target="#edit">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
@@ -81,10 +82,11 @@ include './traitement/booking.php'
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
-
                                     </tbody>
                                 </table>
                             </div>
+
+
                             <!-- Modal -->
                             <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">

@@ -127,30 +127,33 @@ window.onclick = function(event) {
 
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    var editModal = document.getElementById('EditModal');
-    editModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget; // Button that triggered the modal
-        var serviceId = button.getAttribute('data-id');
-        var serviceName = button.getAttribute('data-name');
-        var serviceType = button.getAttribute('data-type');
-        var serviceDescription = button.getAttribute('data-description');
-        var serviceAmount = button.getAttribute('data-amount');
+function openModal2(image, roomName, roomType, capacity, price, description, numberBed, bedType, quantity, wifi, tv, climatiseur, freeDrink, disponibility) {
+    var modal = document.getElementById('edit');
+    
+    // Update the modal's content with the passed parameters
+    modal.querySelector('#editRoomID').value = ''; // Set this if you need to use it
+    modal.querySelector('#editName').value = roomName;
+    modal.querySelector('#editType').value = roomType;
+    modal.querySelector('#editCapacity').value = capacity;
+    modal.querySelector('#editPrice').value = price;
+    modal.querySelector('#editDescription').value = description;
+    modal.querySelector('#editNumberBed').value = numberBed;
+    modal.querySelector('#editBedType').value = bedType;
+    modal.querySelector('#editQuantity').value = quantity;
+    
+    // Set the checkboxes based on the passed values
+    modal.querySelector('#editWifi').checked = wifi === '1';
+    modal.querySelector('#editTV').checked = tv === '1';
+    modal.querySelector('#editClimatiseur').checked = climatiseur === '1';
+    modal.querySelector('#editFreeDrink').checked = freeDrink === '1';
+    modal.querySelector('#editDisponibility').checked = disponibility === '1';
 
-        // Update the modal's content.
-        var modalServiceID = editModal.querySelector('#editServiceID');
-        var modalServiceName = editModal.querySelector('#editName');
-        var modalServiceType = editModal.querySelector('#editType');
-        var modalServiceDescription = editModal.querySelector('#editDescription');
-        var modalServiceAmount = editModal.querySelector('#editAmount');
+    // Show the modal
+    var bootstrapModal = new bootstrap.Modal(modal);
+    bootstrapModal.show();
+}
 
-        modalServiceID.value = serviceId;
-        modalServiceName.value = serviceName;
-        modalServiceType.value = serviceType;
-        modalServiceDescription.value = serviceDescription;
-        modalServiceAmount.value = serviceAmount;
-    });
-});
+
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {

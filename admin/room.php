@@ -154,10 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                             </div>
 
                             <!-- Modal for adding a room -->
-                            <div id="addRoomModal" class="modal " tabindex="-1" aria-hidden="true" role="dialog">
+                            <div id="addRoomModal" class="modal" tabindex="-1" aria-hidden="true" role="dialog">
                                 <div class="modal-dialog modal-xl" role="document">
-                                    <div class="modal-content  ">
-                                        <div class="modal-header border-0 ">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0">
                                             <h5 class="modal-title">
                                                 <span class="fw-mediumbold"> New</span>
                                                 <span class="fw-light"> Room </span>
@@ -214,13 +214,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Type Bed</label>
-                                                            <input id="addBedType" name="BedType" type="text" class="form-control" placeholder="Type Bed" required />
+                                                            <input id="addBedType" name="TypeBed" type="text" class="form-control" placeholder="Type Bed" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Quantity</label>
-                                                            <input id="addBedType" name="quantity" type="number" class="form-control" placeholder="Quantity" required />
+                                                            <input id="addQuantity" name="quantity" type="number" class="form-control" placeholder="Quantity" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,33 +231,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                             <input id="otherPics" name="OtherPics[]" type="file" class="form-control" multiple />
                                                         </div>
                                                     </div>
+                                                    <!-- Repeat above block for more images if needed -->
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-3">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Other Pic</label>
-                                                            <input id="otherPics" name="OtherPics[]" type="file" class="form-control" multiple />
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" type="checkbox" name="WiFi" id="wifiCheck" value="1">
+                                                            <label class="form-check-label" for="wifiCheck">WiFi</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Other Pic</label>
-                                                            <input id="otherPics" name="OtherPics[]" type="file" class="form-control" multiple />
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" type="checkbox" name="TV" id="tvCheck" value="1">
+                                                            <label class="form-check-label" for="tvCheck">TV</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Other Pic</label>
-                                                            <input id="otherPics" name="OtherPics[]" type="file" class="form-control" multiple />
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" type="checkbox" name="Climatiseur" id="climatiseurCheck" value="1">
+                                                            <label class="form-check-label" for="climatiseurCheck">Climatiseur</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" type="checkbox" name="FreeDrink" id="freeDrinkCheck" value="1">
+                                                            <label class="form-check-label" for="freeDrinkCheck">Free Drink</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" type="checkbox" name="Disponibility" id="disponibilityCheck" value="1">
+                                                            <label class="form-check-label" for="disponibilityCheck">Disponibility</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <button type="submit" name="submit" class="btn btn-primary">Add</button>
                                                 <button type="button" class="btn btn-danger" onclick="closeModal()">Close</button>
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                             <!-- end modal -->
                             <div id="show" class="modal" role="dialog">
                                 <div class="modal-dialog modal-lg" role="document">

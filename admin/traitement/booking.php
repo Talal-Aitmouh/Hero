@@ -17,7 +17,7 @@ $sqlbooking = "SELECT
     Booking.CheckOutDate,
     Booking.TotalAmount,
     Booking.Status,
-    Guests.Name AS GuestName,
+    Guests.FullName AS GuestName,  -- Make sure this column exists in the Guests table
     Rooms.RoomName
 FROM 
     Booking
@@ -29,6 +29,17 @@ $resultbooking = $conn->query($sqlbooking);
 
 if ($resultbooking->num_rows > 0) {
     while ($rowbooking = $resultbooking->fetch_assoc()) {
+        // Get services for each booking
+        $bookingID = $rowbooking['BookingID'];
+        $queryServices = "SELECT Service.Name FROM BookingServices 
+                          INNER JOIN Service ON BookingServices.ServiceID = Service.ServiceID 
+                          WHERE BookingServices.BookingID = '$bookingID'";
+        $resultServices = mysqli_query($conn, $queryServices);
+        $services = [];
+        while ($service = mysqli_fetch_assoc($resultServices)) {
+            $services[] = $service['Name'];
+        }
+        $rowbooking['Services'] = implode(', ', $services);
         $reservations[] = $rowbooking;
     }
 }
@@ -36,7 +47,7 @@ if ($resultbooking->num_rows > 0) {
 $queryroom = "SELECT RoomID, RoomName, Price, Quantity FROM Rooms";
 $result = mysqli_query($conn, $queryroom);
 
-$queryServices = "SELECT ServiceID, Name, Amount FROM Service";
+$queryServices = "SELECT ServiceID, ServiceName, Price FROM Service";
 $resultServices = mysqli_query($conn, $queryServices);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -69,6 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Delete the billing information
             $query = "DELETE FROM Billing WHERE BookingID = '$bookingID'";
+            mysqli_query($conn, $query);
+
+            // Delete the services associated with the booking
+            $query = "DELETE FROM BookingServices WHERE BookingID = '$bookingID'";
             mysqli_query($conn, $query);
         }
         header('Location: ../booking.php');
@@ -110,24 +125,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_query($conn, $query);
 
         // Update services
-        // First, delete existing service bookings
-        
+        // Delete existing service bookings
+        $query = "DELETE FROM BookingServices WHERE BookingID = '$bookingID'";
+        mysqli_query($conn, $query);
 
-        // Then, add new service bookings
+        // Add new service bookings
         if (isset($_POST['services'])) {
             foreach ($_POST['services'] as $serviceID) {
-                
-
-                // Update the total amount with service cost
+                // Get service amount
                 $query = "SELECT Amount FROM Service WHERE ServiceID = '$serviceID'";
                 $result = mysqli_query($conn, $query);
                 $service = mysqli_fetch_assoc($result);
                 $totalAmount += $service['Amount'];
 
-                // Update the total amount in the booking
-                $query = "UPDATE Booking SET TotalAmount='$totalAmount' WHERE BookingID='$bookingID'";
+                // Insert into BookingServices table
+                $query = "INSERT INTO BookingServices (BookingID, ServiceID) VALUES ('$bookingID', '$serviceID')";
                 mysqli_query($conn, $query);
             }
+
+            // Update the total amount in the booking
+            $query = "UPDATE Booking SET TotalAmount='$totalAmount' WHERE BookingID='$bookingID'";
+            mysqli_query($conn, $query);
         }
 
         // Update billing information
@@ -196,6 +214,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $paymentStatus = ($status == 'Booked') ? 'Paid' : 'Pending'; // Initial payment status based on booking status
                 $query = "INSERT INTO Billing (TotalAmount, PaymentStatus, BookingID, GuestID) VALUES ('$totalAmount', '$paymentStatus', '$bookingID', '$guestID')";
                 mysqli_query($conn, $query);
+
+                // Insert into BookingServices table
+                if (isset($_POST['services'])) {
+                    foreach ($_POST['services'] as $serviceID) {
+                        $query = "INSERT INTO BookingServices (BookingID, ServiceID) VALUES ('$bookingID', '$serviceID')";
+                        mysqli_query($conn, $query);
+                    }
+                }
 
                 // Decrement the quantity of rooms available
                 $newRoomQuantity = $roomQuantity - $quantity;
