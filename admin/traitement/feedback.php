@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 $feedbacks = [];
-$sql = "SELECT guests.GuestID, guests.name, feedback.rating, feedback.date, feedback.comments
+$sql = "SELECT guests.GuestID, guests.FullName, feedback.Rating, feedback.FeedbackDate, feedback.FeedbackText
         FROM feedback
         JOIN guests ON feedback.GuestID = guests.GuestID";
 
