@@ -65,12 +65,7 @@ include './traitement/service.php'
                                                             <input id="addName" name="name" type="text" class="form-control" placeholder="fill name" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Type</label>
-                                                            <input id="addtype" name="type" type="text" class="form-control" placeholder="fill type" required />
-                                                        </div>
-                                                    </div>
+                                                
                                                     <div class="col-md-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Description</label>
@@ -105,7 +100,6 @@ include './traitement/service.php'
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Type</th>
                                             <th>Description</th>
                                             <th>Amount</th>
                                             <th style="width: 10%">Action</th>
@@ -114,14 +108,13 @@ include './traitement/service.php'
                                     <tbody>
                                         <?php foreach ($services as $service) : ?>
                                             <tr>
-                                                <td><?php echo $service['Name']; ?></td>
-                                                <td><?php echo $service['Type']; ?></td>
+                                                <td><?php echo $service['ServiceName']; ?></td>
                                                 <td><?php echo $service['Description']; ?></td>
-                                                <td><?php echo $service['Amount']; ?></td>
+                                                <td><?php echo $service['Price']; ?></td>
                                                 <td>
                                                     <form action="./traitement/editservice.php" method="post">
                                                         <div class="form-button-action">
-                                                            <button type="button" class="btn btn-link btn-primary btn-lg" name="edit" data-bs-toggle="modal" data-bs-target="#EditModal" data-id="<?php echo $service['ServiceID']; ?>" data-name="<?php echo $service['Name']; ?>" data-type="<?php echo $service['Type']; ?>" data-description="<?php echo $service['Description']; ?>" data-amount="<?php echo $service['Amount']; ?>">
+                                                            <button type="button" class="btn btn-link btn-primary btn-lg" name="edit" data-bs-toggle="modal" data-bs-target="#EditModal" data-id="<?php echo $service['ServiceID']; ?>" data-name="<?php echo $service['ServiceName']; ?>" data-description="<?php echo $service['Description']; ?>" data-amount="<?php echo $service['Price']; ?>">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
 
@@ -157,25 +150,20 @@ include './traitement/service.php'
                                                     <div class="col-md-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Name</label>
-                                                            <input id="editName" name="name" type="text" class="form-control" required />
+                                                            <input id="editName" name="name" type="text" class="form-control"  />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Type</label>
-                                                            <input id="editType" name="type" type="text" class="form-control" required />
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="col-md-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Description</label>
-                                                            <input id="editDescription" type="text" name="description" class="form-control" required />
+                                                            <input id="editDescription" type="text" name="description" class="form-control"  />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Amount</label>
-                                                            <input id="editAmount" type="number" name="amount" class="form-control" required />
+                                                            <input id="editAmount" type="number" name="amount" class="form-control"  />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
