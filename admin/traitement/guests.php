@@ -27,34 +27,55 @@ if ($result->num_rows > 0) {
     }
 }
 
+
+// Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
+
+    // Retrieve form data
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $nationality = $_POST['nationality'];
     $address = $_POST['address'];
+    $passportNumber = $_POST['passport_number'];
+    $dateOfBirth = $_POST['date_of_birth'];
+    $gender = $_POST['gender'];
 
-    $sqlguest = 'INSERT INTO guests (Name, Email, Nationality, Phone, Address) VALUES (?, ?, ?, ?, ?)';
-    $stmt = $conn->prepare($sqlguest);
-    $stmt->bind_param('sssss', $name, $email, $nationality, $phone, $address);
+    $sql = 'INSERT INTO guests (FullName, Email, Phone, Address, Nationality, PassportNumber, DateOfBirth, Gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ssssssss', $name, $email, $phone, $address, $nationality, $passportNumber, $dateOfBirth, $gender);
     $stmt->execute();
+
+    // Redirect after successful insertion
     header('Location: ../guests.php');
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    $name1 = $_POST['name'];
-    $email1 = $_POST['email'];
-    $phone1 = $_POST['phone'];
-    $nationality1 = $_POST['nationality'];
-    $address1 = $_POST['address'];
-    $id = $_POST['guestid']; // Ensure the field name matches the hidden input name in the form
 
-    $sqlguest1 = "UPDATE guests SET Name = ?, Email = ?, Nationality = ?, Phone = ?, Address = ? WHERE GuestID = ?";
-    $stmt = $conn->prepare($sqlguest1);
-    $stmt->bind_param('sssssi', $name1, $email1, $nationality1, $phone1, $address1, $id);
+
+// Check if the form was submitted for updating guest information
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+    // Include your database connection here
+    // Example: $conn = new mysqli('localhost', 'username', 'password', 'database_name');
+    
+    // Retrieve form data
+    $id = $_POST['guestid'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $nationality = $_POST['nationality'];
+    $address = $_POST['address'];
+    $passportNumber = $_POST['passport_number'];
+    $dateOfBirth = $_POST['date_of_birth'];
+    $gender = $_POST['gender'];
+
+    // Prepare and execute SQL statement
+    $sql = 'UPDATE guests SET FullName = ?, Email = ?, Phone = ?, Address = ?, Nationality = ?, PassportNumber = ?, DateOfBirth = ?, Gender = ? WHERE GuestID = ?';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ssssssssi', $name, $email, $phone, $address, $nationality, $passportNumber, $dateOfBirth, $gender, $id);
 
     if ($stmt->execute()) {
+        // Redirect after successful update
         header('Location: ../guests.php');
         exit();
     } else {
@@ -62,6 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     }
     $stmt->close();
 }
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     $id = $_POST['guestid']; // Ensure the field name matches the hidden input name

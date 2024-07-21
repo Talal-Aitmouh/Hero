@@ -48,65 +48,84 @@ include './traitement/guests.php'
                                     <div class="modal-content">
                                         <div class="modal-header border-0">
                                             <h5 class="modal-title">
-                                                <span class="fw-mediumbold"> New</span>
-                                                <span class="fw-light"> Guest </span>
+                                                <span class="fw-mediumbold">New</span>
+                                                <span class="fw-light">Guest</span>
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-
                                             <form action="./traitement/guests.php" method="post">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Name</label>
-                                                            <input name="name" id="addName" type="text" class="form-control" placeholder="Enter name" />
+                                                            <input name="name" id="addName" type="text" class="form-control" placeholder="Enter name" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Phone</label>
-                                                            <input name="phone" id="addPhone" type="text" class="form-control" placeholder="Enter phone number" />
+                                                            <input name="phone" id="addPhone" type="text" class="form-control" placeholder="Enter phone number" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Nationality</label>
-                                                            <input name="nationality" id="addNationality" type="text" class="form-control" placeholder="Enter nationality" />
+                                                            <input name="nationality" id="addNationality" type="text" class="form-control" placeholder="Enter nationality" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Email</label>
-                                                            <input name="email" id="addEmail" type="email" class="form-control" placeholder="Enter email" />
+                                                            <input name="email" id="addEmail" type="email" class="form-control" placeholder="Enter email" required />
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Passport Number</label>
+                                                            <input name="passport_number" id="addPassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Date of Birth</label>
+                                                            <input name="date_of_birth" id="addDateOfBirth" type="date" class="form-control" placeholder="Enter date of birth" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Gender</label>
+                                                            <select name="gender" id="addGender" class="form-control" required>
+                                                                <option value="">Select gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Address</label>
-                                                            <input name="address" id="addAddress2" type="text" class="form-control" placeholder="Enter address" />
+                                                            <input name="address" id="addAddress" type="text" class="form-control" placeholder="Enter address" required />
                                                         </div>
                                                     </div>
-
-
-                                                    <div class="modal-footer border-0">
-                                                        <button type="submit" id="addRowButton" name="add" class="btn btn-primary">
-                                                            Add
-                                                        </button>
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                                            Close
-                                                        </button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button type="submit" id="addRowButton" name="add" class="btn btn-primary">
+                                                        Add
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                        Close
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="table-responsive">
                                 <table id="add-row" class="display table table-striped table-hover">
@@ -124,22 +143,22 @@ include './traitement/guests.php'
                                     <tbody>
                                         <?php foreach ($guests as $guest) : ?>
                                             <tr>
-                                                <td><?php echo $guest['Name'] ?></td>
+                                                <td><?php echo $guest['FullName'] ?></td>
                                                 <td><?php echo $guest['Email'] ?> </td>
                                                 <td><?php echo $guest['Phone'] ?></td>
-                                                <td><?php echo $guest['CheckInDate'] ?></td>
-                                                <td><?php echo $guest['CheckOutDate'] ?></td>
+                                                <td><?php echo $guest['CHECKINDATE'] ?></td>
+                                                <td><?php echo $guest['CHECKOUTDATE'] ?></td>
                                                 <td>
                                                     <form action="./traitement/guests.php" method="post">
-                                                    <input type="hidden" name="guestid" value="<?php echo $guest['GuestID']; ?>" />
+                                                        <input type="hidden" name="guestid" value="<?php echo $guest['GuestID']; ?>" />
                                                         <div class="form-button-action">
-                                                            <button type="button" title="Edit" name="update" class="btn btn-link btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Editguests" data-id="<?php echo $guest['GuestID']; ?>" data-name="<?php echo $guest['Name']; ?>" data-email="<?php echo $guest['Email']; ?>" data-phone="<?php echo $guest['Phone']; ?>" data-address="<?php echo $guest['Address']; ?>" data-nationality="<?php echo $guest['Nationality']; ?>">
+                                                            <button type="button" title="Edit" name="update" class="btn btn-link btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Editguests" data-id="<?php echo $guest['GuestID']; ?>" data-name="<?php echo $guest['FullName']; ?>" data-email="<?php echo $guest['Email']; ?>" data-phone="<?php echo $guest['Phone']; ?>" data-address="<?php echo $guest['Address']; ?>" data-nationality="<?php echo $guest['Nationality']; ?>" data-passport="<?php echo $guest['PassportNumber']; ?>" data-dateofbirth="<?php echo $guest['DateOfBirth']; ?>" data-gender="<?php echo $guest['Gender']; ?>">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                             <button type="submit" name="delete" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
-                                                            <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Remove" >
+                                                            <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Remove">
                                                                 <i class="fa fa-eye"></i>
                                                             </button>
                                                         </div>
@@ -155,15 +174,14 @@ include './traitement/guests.php'
                                     <div class="modal-content">
                                         <div class="modal-header border-0">
                                             <h5 class="modal-title">
-                                                <span class="fw-mediumbold"> New</span>
-                                                <span class="fw-light"> Guest </span>
+                                                <span class="fw-mediumbold">Edit</span>
+                                                <span class="fw-light">Guest</span>
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-
                                             <form action="./traitement/guests.php" method="post">
                                                 <div class="row">
                                                     <input type="hidden" id="editguestId" name="guestid" />
@@ -171,47 +189,68 @@ include './traitement/guests.php'
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Name</label>
-                                                            <input name="name" id="editName" type="text" class="form-control" placeholder="Enter name" />
+                                                            <input name="name" id="editName" type="text" class="form-control" placeholder="Enter name" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Phone</label>
-                                                            <input name="phone" id="editPhone" type="text" class="form-control" placeholder="Enter phone number" />
+                                                            <input name="phone" id="editPhone" type="text" class="form-control" placeholder="Enter phone number" required />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Nationality</label>
-                                                            <input name="nationality" id="editNationality" type="text" class="form-control" placeholder="Enter nationality" />
+                                                            <input name="nationality" id="editNationality" type="text" class="form-control" placeholder="Enter nationality" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Email</label>
-                                                            <input name="email" id="editEmail" type="email" class="form-control" placeholder="Enter email" />
+                                                            <input name="email" id="editEmail" type="email" class="form-control" placeholder="Enter email" required />
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Passport Number</label>
+                                                            <input name="passport_number" id="editPassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Date of Birth</label>
+                                                            <input name="date_of_birth" id="editDateOfBirth" type="date" class="form-control" placeholder="Enter date of birth" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Gender</label>
+                                                            <select name="gender" id="editGender" class="form-control" required>
+                                                                <option value="">Select gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Address</label>
-                                                            <input name="address" id="editAddress2" type="text" class="form-control" placeholder="Enter address" />
+                                                            <input name="address" id="editAddress" type="text" class="form-control" placeholder="Enter address" required />
                                                         </div>
                                                     </div>
-
-
-                                                    <div class="modal-footer border-0">
-                                                        <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button type="submit" name="update" class="btn btn-primary">Save Changes</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                 </div>
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+                            
+
                         </div>
                     </div>
                 </div>

@@ -195,14 +195,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         var guestPhone = button.getAttribute('data-phone');
         var guestAddress = button.getAttribute('data-address');
         var guestNationality = button.getAttribute('data-nationality');
+        var guestPassportNumber = button.getAttribute('data-passport');
+        var guestDateOfBirth = button.getAttribute('data-dateofbirth');
+        var guestGender = button.getAttribute('data-gender');
 
         // Update the modal's content.
         var modalGuestID = editModal.querySelector('#editguestId');
         var modalGuestName = editModal.querySelector('#editName');
         var modalGuestEmail = editModal.querySelector('#editEmail');
         var modalGuestPhone = editModal.querySelector('#editPhone');
-        var modalGuestAddress = editModal.querySelector('#editAddress2');
+        var modalGuestAddress = editModal.querySelector('#editAddress');
         var modalGuestNationality = editModal.querySelector('#editNationality');
+        var modalGuestPassportNumber = editModal.querySelector('#editPassportNumber');
+        var modalGuestDateOfBirth = editModal.querySelector('#editDateOfBirth');
+        var modalGuestGender = editModal.querySelector('#editGender');
 
         modalGuestID.value = guestId;
         modalGuestName.value = guestName;
@@ -210,6 +216,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         modalGuestPhone.value = guestPhone;
         modalGuestAddress.value = guestAddress;
         modalGuestNationality.value = guestNationality;
+        modalGuestPassportNumber.value = guestPassportNumber;
+        modalGuestDateOfBirth.value = guestDateOfBirth;
+        modalGuestGender.value = guestGender;
     });
 });
+
 </script>
