@@ -153,14 +153,13 @@ include './traitement/guests.php'
                                                         <input type="hidden" name="guestid" value="<?php echo $guest['GuestID']; ?>" />
                                                         <div class="form-button-action">
                                                             <button type="button" title="Edit" name="update" class="btn btn-link btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#Editguests" data-id="<?php echo $guest['GuestID']; ?>" data-name="<?php echo $guest['FullName']; ?>" data-email="<?php echo $guest['Email']; ?>" data-phone="<?php echo $guest['Phone']; ?>" data-address="<?php echo $guest['Address']; ?>" data-nationality="<?php echo $guest['Nationality']; ?>" data-passport="<?php echo $guest['PassportNumber']; ?>" data-dateofbirth="<?php echo $guest['DateOfBirth']; ?>" data-gender="<?php echo $guest['Gender']; ?>">
+
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                             <button type="submit" name="delete" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
-                                                            <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Remove">
-                                                                <i class="fa fa-eye"></i>
-                                                            </button>
+
                                                         </div>
                                                     </form>
                                                 </td>
@@ -249,8 +248,6 @@ include './traitement/guests.php'
                                     </div>
                                 </div>
                             </div>
-                            
-
                         </div>
                     </div>
                 </div>
