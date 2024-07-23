@@ -250,6 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['RoomID'])) {
                                                         <div class="form-check mt-3">
                                                             <input class="form-check-input" type="checkbox" name="Climatiseur" id="climatiseurCheck" value="1">
                                                             <label class="form-check-label" for="climatiseurCheck">Climatiseur</label>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">

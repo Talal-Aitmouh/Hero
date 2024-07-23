@@ -69,7 +69,7 @@ include './links/header.php';
 
                     // Display additional images
                     while ($imgRow = mysqli_fetch_assoc($imgRes)) {
-                        echo '<div class="room__pic__item set-bg" data-setbg="img/rooms/images/' . $imgRow['ImagePath'] . '"></div>';
+                        echo '<div class="room__pic__item set-bg" data-setbg="img/rooms/' . $imgRow['ImagePath'] . '"></div>';
                     }
                     ?>
                 </div>
