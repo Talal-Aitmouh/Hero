@@ -62,16 +62,45 @@
     });
   </script>
 <script>
-        function openModal() {
-            document.getElementById('addRoomModal').style.display = 'block';
-            document.getElementById('mainContent').classList.add('modal-backdrop-blur'); // Apply blur to main content
-        }
+document.addEventListener('DOMContentLoaded', function () {
+    var editRoomModal = document.getElementById('EditRoomModal');
+    editRoomModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var roomID = button.getAttribute('data-id');
+        var name = button.getAttribute('data-room-name');
+        var type = button.getAttribute('data-room-type');
+        var capacity = button.getAttribute('data-capacity');
+        var price = button.getAttribute('data-price');
+        var description = button.getAttribute('data-description');
+        var numberBed = button.getAttribute('data-number-bed');
+        var typeBed = button.getAttribute('data-type-bed');
+        var quantity = button.getAttribute('data-quantity');
+        var disponibility = button.getAttribute('data-disponibility') === '1';
+        var wifi = button.getAttribute('data-wifi') === '1';
+        var tv = button.getAttribute('data-tv') === '1';
+        var climatiseur = button.getAttribute('data-climatiseur') === '1';
+        var freeDrink = button.getAttribute('data-free-drink') === '1';
 
-        function closeModal() {
-            document.getElementById('addRoomModal').style.display = 'none';
-            document.getElementById('mainContent').classList.remove('modal-backdrop-blur'); // Remove blur from main content
-        }
-    </script>
+        var modal = editRoomModal;
+        modal.querySelector('#editRoomID').value = roomID;
+        modal.querySelector('#editRoomName').value = name;
+        modal.querySelector('#editType').value = type;
+        modal.querySelector('#editCapacity').value = capacity;
+        modal.querySelector('#editPrice').value = price;
+        modal.querySelector('#editDescription').value = description;
+        modal.querySelector('#editNumberBed').value = numberBed;
+        modal.querySelector('#editBedType').value = typeBed;
+        modal.querySelector('#editquantity').value = quantity;
+        modal.querySelector('#disponibilityCheck').checked = disponibility;
+        modal.querySelector('#wifiCheck').checked = wifi;
+        modal.querySelector('#tvCheck').checked = tv;
+        modal.querySelector('#climatiseurCheck').checked = climatiseur;
+        modal.querySelector('#freeDrinkCheck').checked = freeDrink;
+    });
+});
+
+
+</script>
 <script>
 function openModal2(photo, name, type, capacity, price, description, numberBed, bedType, quantity) {
     document.getElementById('roomImage').src = '../img/rooms/' + photo;
@@ -95,66 +124,8 @@ function closeModal2() {
     modal.style.display = 'none';
 }
 </script>
-<script>
-function openEditRoomModal(roomID, name, Photo, type, capacity, price, description, numberBed, bedType, quantity) {
-    document.getElementById('editRoomID').value = roomID;
-    document.getElementById('editName').value = name;
-    
-    document.getElementById('editType').value = type;
-    document.getElementById('editCapacity').value = capacity;
-    document.getElementById('editPrice').value = price;
-    document.getElementById('editDescription').value = description;
-    document.getElementById('editNumberBed').value = numberBed;
-    document.getElementById('editBedType').value = bedType;
-    document.getElementById('editquantity').value = quantity;
-
-    var modal = document.getElementById('edit');
-    modal.style.display = 'block';
-}
-
-function closeEditModal() {
-    var modal = document.getElementById('edit');
-    modal.style.display = 'none';
-}
-
-// Close the modal when the user clicks outside of it
-window.onclick = function(event) {
-    var modal = document.getElementById('edit');
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-}
-
-</script>
-<script>
-function openModal2(image, roomName, roomType, capacity, price, description, numberBed, bedType, quantity, wifi, tv, climatiseur, freeDrink, disponibility) {
-    var modal = document.getElementById('edit');
-    
-    // Update the modal's content with the passed parameters
-    modal.querySelector('#editRoomID').value = ''; // Set this if you need to use it
-    modal.querySelector('#editName').value = roomName;
-    modal.querySelector('#editType').value = roomType;
-    modal.querySelector('#editCapacity').value = capacity;
-    modal.querySelector('#editPrice').value = price;
-    modal.querySelector('#editDescription').value = description;
-    modal.querySelector('#editNumberBed').value = numberBed;
-    modal.querySelector('#editBedType').value = bedType;
-    modal.querySelector('#editQuantity').value = quantity;
-    
-    // Set the checkboxes based on the passed values
-    modal.querySelector('#editWifi').checked = wifi === '1';
-    modal.querySelector('#editTV').checked = tv === '1';
-    modal.querySelector('#editClimatiseur').checked = climatiseur === '1';
-    modal.querySelector('#editFreeDrink').checked = freeDrink === '1';
-    modal.querySelector('#editDisponibility').checked = disponibility === '1';
-
-    // Show the modal
-    var bootstrapModal = new bootstrap.Modal(modal);
-    bootstrapModal.show();
-}
 
 
-</script>
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     var editModal = document.getElementById('Editstaff');

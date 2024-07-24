@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_POST["submit"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])){
 
     $name = mysqli_real_escape_string($conn, $_POST['Name']);
     $type = mysqli_real_escape_string($conn, $_POST['Type']);
@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
     $typeBed = mysqli_real_escape_string($conn, $_POST['TypeBed']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
 
-    $wifi = isset($_POST['Wifi']) ? 1 : 0;
+    $wifi = isset($_POST['WiFi']) ? 1 : 0;
     $tv = isset($_POST['TV']) ? 1 : 0;
     $climatiseur = isset($_POST['Climatiseur']) ? 1 : 0;
     $freeDrink = isset($_POST['FreeDrink']) ? 1 : 0;
