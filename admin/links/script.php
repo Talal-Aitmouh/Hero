@@ -102,6 +102,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var showModal = document.getElementById('show');
+    showModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+
+        // Extract info from data-* attributes
+        var roomName = button.getAttribute('data-room-name');
+        var roomType = button.getAttribute('data-room-type');
+        var roomCapacity = button.getAttribute('data-capacity');
+        var roomPrice = button.getAttribute('data-price');
+        var roomDescription = button.getAttribute('data-description');
+        var roomNumberBed = button.getAttribute('data-number-bed');
+        var roomBedType = button.getAttribute('data-type-bed');
+        var roomQuantity = button.getAttribute('data-quantity');
+        
+        // Update the modal's content.
+        var modalTitle = showModal.querySelector('.modal-title');
+        var modalBody = showModal.querySelector('.room-info');
+        modalTitle.textContent = roomName;
+        modalBody.querySelector('#roomName').textContent = roomName;
+        modalBody.querySelector('#roomType').textContent = roomType;
+        modalBody.querySelector('#roomCapacity').textContent = roomCapacity;
+        modalBody.querySelector('#roomPrice').textContent = roomPrice;
+        modalBody.querySelector('#roomDescription').textContent = roomDescription;
+        modalBody.querySelector('#roomNumberBed').textContent = roomNumberBed;
+        modalBody.querySelector('#roomBedType').textContent = roomBedType;
+        modalBody.querySelector('#roomquantity').textContent = roomQuantity;
+
+        // Optional: Set image src if available
+        var roomImage = button.getAttribute('data-room-image');
+        if(roomImage) {
+            modalBody.querySelector('#roomImage').src =  '../img/rooms/' + roomImage;
+        }
+    });
+});
+
+
+
+</script>
+<script>
 function openModal2(photo, name, type, capacity, price, description, numberBed, bedType, quantity) {
     document.getElementById('roomImage').src = '../img/rooms/' + photo;
     document.getElementById('roomName').innerText = name;
