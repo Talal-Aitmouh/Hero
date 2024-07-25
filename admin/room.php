@@ -114,47 +114,47 @@ include './traitement/room.php';
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Other Pic</label>
                                                             <input id="otherPics" name="OtherPics[]" type="file" class="form-control" multiple />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4">
+                                                    <div class="form-check mt-3">
+                                                        <input class="form-check-input" type="checkbox" name="Disponibility" id="disponibilityCheck" value="1">
+                                                        <label class="form-check-label" for="disponibilityCheck">Disponibility</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-label d-block">Services</label>
+                                                    <div class="selectgroup selectgroup-secondary selectgroup-pills">
+                                                        <label class="selectgroup-item">
+                                                            <input type="checkbox" name="WiFi" id="wifiCheck" value="1" class="selectgroup-input" />
+                                                            <span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-wifi"></i></span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="checkbox" name="TV" id="tvCheck" value="1" class="selectgroup-input" />
+                                                            <span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-tv"></i></span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="checkbox" name="Climatiseur" value="1" id="climatiseurCheck" class="selectgroup-input" />
+                                                            <span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-snowflake"></i></span>
+                                                        </label>
+                                                        <label class="selectgroup-item">
+                                                            <input type="checkbox" name="FreeDrink" value="1" id="freeDrinkCheck" class="selectgroup-input" />
+                                                            <span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-glass-martini-alt"></i></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                    </div>
                                                     <!-- Repeat above block for more images if needed -->
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-check mt-3">
-                                                            <input class="form-check-input" type="checkbox" name="WiFi" id="wifiCheck" value="1">
-                                                            <label class="form-check-label" for="wifiCheck">WiFi</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-check mt-3">
-                                                            <input class="form-check-input" type="checkbox" name="TV" id="tvCheck" value="1">
-                                                            <label class="form-check-label" for="tvCheck">TV</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-check mt-3">
-                                                            <input class="form-check-input" type="checkbox" name="Climatiseur" id="climatiseurCheck" value="1">
-                                                            <label class="form-check-label" for="climatiseurCheck">Climatiseur</label>
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-check mt-3">
-                                                            <input class="form-check-input" type="checkbox" name="FreeDrink" id="freeDrinkCheck" value="1">
-                                                            <label class="form-check-label" for="freeDrinkCheck">Free Drink</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-check mt-3">
-                                                            <input class="form-check-input" type="checkbox" name="Disponibility" id="disponibilityCheck" value="1">
-                                                            <label class="form-check-label" for="disponibilityCheck">Disponibility</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
+
+                                                
                                                 <button type="submit" name="add" class="btn btn-primary">Add</button>
                                                 <button type="button" class="btn btn-danger">Close</button>
                                             </form>
@@ -179,55 +179,55 @@ include './traitement/room.php';
                                             <form id="editRoomForm" action="./traitement/editroom.php" method="POST" enctype="multipart/form-data">
                                                 <input type="hidden" id="editRoomID" name="RoomID">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Name</label>
                                                             <input id="editRoomName" name="Name" type="text" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Image</label>
                                                             <input id="editPhoto" name="Photo" type="file" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Type</label>
                                                             <input id="editType" name="Type" type="text" class="form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Capacity</label>
                                                             <input id="editCapacity" name="Capacity" type="number" class="form-control" placeholder="Capacity" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Price</label>
                                                             <input id="editPrice" name="Price" type="text" class="form-control" placeholder="Price" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Description</label>
                                                             <input id="editDescription" name="Description" type="text" class="form-control" placeholder="Description" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Number Bed</label>
                                                             <input id="editNumberBed" name="NumberBed" type="number" class="form-control" placeholder="Number Bed" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Type Bed</label>
                                                             <input id="editBedType" name="BedType" type="text" class="form-control" placeholder="Type Bed" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Quantity</label>
                                                             <input id="editquantity" name="quantity" type="number" class="form-control" placeholder="Quantity" />
@@ -235,12 +235,19 @@ include './traitement/room.php';
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group form-group-default">
                                                             <label>Other Pic</label>
                                                             <input id="editPhoto" name="OtherPics[]" type="file" class="form-control" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-check mt-3">
+                                                            <input class="form-check-input" type="checkbox" name="Disponibility" id="disponibilityCheck" value="1">
+                                                            <label class="form-check-label" for="disponibilityCheck">Disponibility</label>
+                                                        </div>
+                                                    </div>
+                                                    
 
                                                 </div>
                                                 <div class="row">
@@ -268,13 +275,9 @@ include './traitement/room.php';
                                                             <label class="form-check-label" for="freeDrinkCheck">Free Drink</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-check mt-3">
-                                                            <input class="form-check-input" type="checkbox" name="Disponibility" id="disponibilityCheck" value="1">
-                                                            <label class="form-check-label" for="disponibilityCheck">Disponibility</label>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
+
                                                 <button type="submit" name="submit" class="btn btn-primary">Save Changes</button>
                                                 <button type="button" class="btn btn-danger" onclick="closeEditModal()">Close</button>
                                             </form>
