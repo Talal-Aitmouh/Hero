@@ -27,28 +27,16 @@ INNER JOIN
     Rooms ON Booking.RoomID = Rooms.RoomID";
 $resultbooking = $conn->query($sqlbooking);
 
-if ($resultbooking->num_rows > 0) {
-    while ($rowbooking = $resultbooking->fetch_assoc()) {
-        // Get services for each booking
-        $bookingID = $rowbooking['BookingID'];
-        $queryServices = "SELECT Service.Name FROM BookingServices 
-                          INNER JOIN Service ON BookingServices.ServiceID = Service.ServiceID 
-                          WHERE BookingServices.BookingID = '$bookingID'";
-        $resultServices = mysqli_query($conn, $queryServices);
-        $services = [];
-        while ($service = mysqli_fetch_assoc($resultServices)) {
-            $services[] = $service['Name'];
-        }
-        $rowbooking['Services'] = implode(', ', $services);
-        $reservations[] = $rowbooking;
-    }
-}
+
 
 $queryroom = "SELECT RoomID, RoomName, Price, Quantity FROM Rooms";
 $result = mysqli_query($conn, $queryroom);
 
 $queryServices = "SELECT ServiceID, ServiceName, Price FROM Service";
 $resultServices = mysqli_query($conn, $queryServices);
+
+$queryGuests = "SELECT * FROM guests";
+$resultGuests = $conn->query($queryGuests);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete'])) {

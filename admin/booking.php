@@ -103,7 +103,20 @@ include './traitement/booking.php'
                                         <div class="modal-body">
 
                                             <form action="./traitement/booking.php" method="POST">
-                                                <h4>Guest Info</h4>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Select Guest</label>
+                                                            <select name="guest" id="addguest" class="form-control">
+                                                                <?php while ($row = mysqli_fetch_assoc($resultGuests)) : ?>
+                                                                    <option value="<?php echo $row['GuestID'] ?>"><?php echo $row['FullName'] ?></option>
+                                                                <?php endwhile; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h4>New Guest</h4>
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
@@ -129,6 +142,30 @@ include './traitement/booking.php'
                                                             <input name="email" id="addEmail" type="email" class="form-control" placeholder="Enter email" />
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Passport Number</label>
+                                                            <input name="passport_number" id="addPassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Date of Birth</label>
+                                                            <input name="date_of_birth" id="addDateOfBirth" type="date" class="form-control" placeholder="Enter date of birth" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Gender</label>
+                                                            <select name="gender" id="addGender" class="form-control" required>
+                                                                <option value="">Select gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
 
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
@@ -178,9 +215,10 @@ include './traitement/booking.php'
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Service</label>
-                                                            <select name="services[]" class="form-select" multiple id="exampleFormControlSelect2" aria-label="Default select example">
+                                                            <select name="services[]" class="form-select">
+                                                                <option value="">Select services</option>
                                                                 <?php while ($row = mysqli_fetch_assoc($resultServices)) : ?>
-                                                                    <option value="<?php echo $row['ServiceID']; ?>"><?php echo $row['Name']; ?></option>
+                                                                    <option value="<?php echo $row['ServiceID']; ?>"><?php echo $row['ServiceName']; ?></option>
                                                                 <?php endwhile; ?>
                                                             </select>
                                                         </div>

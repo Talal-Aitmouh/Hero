@@ -76,7 +76,7 @@ include './traitement/guests.php'
                                                             <input name="nationality" id="addNationality" type="text" class="form-control" placeholder="Enter nationality" required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Email</label>
                                                             <input name="email" id="addEmail" type="email" class="form-control" placeholder="Enter email" required />

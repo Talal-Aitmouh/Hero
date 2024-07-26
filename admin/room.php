@@ -49,7 +49,7 @@ include './traitement/room.php';
                                         <div class="modal-header border-0">
                                             <h5 class="modal-title">
                                                 <span class="fw-mediumbold"> New</span>
-                                                <span class="fw-light"> Staff </span>
+                                                <span class="fw-light"> Room </span>
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
