@@ -89,147 +89,151 @@ include './traitement/booking.php'
 
                             <!-- Modal -->
                             <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title">
-                    <span class="fw-mediumbold"> New</span>
-                    <span class="fw-light"> Reservation </span>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="./traitement/booking.php" method="POST">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Select Guest</label>
-                                <select name="guest" id="addguest" class="form-control">
-                                    <?php while ($row = mysqli_fetch_assoc($resultGuests)) : ?>
-                                        <option value="<?php echo $row['GuestID'] ?>"><?php echo $row['FullName'] ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#guestInfo">New Guest</button>
-                    <div id="guestInfo" class="collapse">
-                        <h4>New Guest</h4>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group form-group-default">
-                                    <label>Name</label>
-                                    <input name="name" id="addName" type="text" class="form-control" placeholder="Enter name" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-default">
-                                    <label>Phone</label>
-                                    <input name="phone" id="addPhone" type="text" class="form-control" placeholder="Enter phone number" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-default">
-                                    <label>Nationality</label>
-                                    <input name="nationality" id="addNationality" type="text" class="form-control" placeholder="Enter nationality" />
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group form-group-default">
-                                    <label>Email</label>
-                                    <input name="email" id="addEmail" type="email" class="form-control" placeholder="Enter email" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-default">
-                                    <label>Passport Number</label>
-                                    <input name="passport_number" id="addPassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-default">
-                                    <label>Date of Birth</label>
-                                    <input name="date_of_birth" id="addDateOfBirth" type="date" class="form-control" placeholder="Enter date of birth" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-default">
-                                    <label>Gender</label>
-                                    <select name="gender" id="addGender" class="form-control" required>
-                                        <option value="">Select gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group form-group-default">
-                                    <label>Address</label>
-                                    <input name="address" id="addAddress2" type="text" class="form-control" placeholder="Enter address" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Check-In Date</label>
-                                    <input name="checkInDate" id="addCheckInDate" type="date" class="form-control" placeholder="Select check-in date" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Check-Out Date</label>
-                                    <input name="checkOutDate" id="addCheckOutDate" type="date" class="form-control" placeholder="Select check-out date" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title">
+                                                <span class="fw-mediumbold"> New</span>
+                                                <span class="fw-light"> Reservation </span>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="./traitement/booking.php" method="POST">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Select Guest</label>
+                                                            <select name="guest" id="addguest" class="form-control">
+                                                                <option value="">Select Guest</option>
+                                                                <?php while ($row = mysqli_fetch_assoc($resultGuests)) : ?>
+                                                                    <option value="<?php echo $row['GuestID'] ?>"><?php echo $row['FullName'] ?></option>
+                                                                <?php endwhile; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-info mb-3" data-toggle="collapse" data-target="#guestInfo">New Guest</button>
+                                                <div id="guestInfo" class="collapse">
+                                                    <h4>New Guest</h4>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Name</label>
+                                                                <input name="name" id="addName" type="text" class="form-control" placeholder="Enter name" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Phone</label>
+                                                                <input name="phone" id="addPhone" type="text" class="form-control" placeholder="Enter phone number" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Nationality</label>
+                                                                <input name="nationality" id="addNationality" type="text" class="form-control" placeholder="Enter nationality" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Email</label>
+                                                                <input name="email" id="addEmail" type="email" class="form-control" placeholder="Enter email" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Passport Number</label>
+                                                                <input name="passport_number" id="addPassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Date of Birth</label>
+                                                                <input name="date_of_birth" id="addDateOfBirth" type="date" class="form-control" placeholder="Enter date of birth" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Gender</label>
+                                                                <select name="gender" id="addGender" class="form-control" required>
+                                                                    <option value="">Select gender</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                    <option value="Other">Other</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Address</label>
+                                                                <input name="address" id="addAddress2" type="text" class="form-control" placeholder="Enter address" />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                <div class="col-md-6">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Check-In Date</label>
+                                                                <input name="checkInDate" id="addCheckInDate" type="date" class="form-control" placeholder="Select check-in date" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group form-group-default">
+                                                                <label>Check-Out Date</label>
+                                                                <input name="checkOutDate" id="addCheckOutDate" type="date" class="form-control" placeholder="Select check-out date" />
+                                                            </div>
+                                                        </div>
+                                                </div>
 
-                    <h4>Select Rooms</h4>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group form-group-default">
-                                <label>Rooms</label>
-                                <select name="roomID" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                    <option selected disabled>Open this select menu</option>
-                                    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                                        <option value="<?php echo $row['RoomID']; ?>"><?php echo $row['RoomName']; ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group form-group-default">
-                                <label>Quantity</label>
-                                <input name="quantity" class="form-control" type="number" id="html5-number-input" min="1" />
-                            </div>
-                        </div>
-                    </div>
+                                                <h4>Select Rooms</h4>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Rooms</label>
+                                                            <select name="roomID" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                                                                <option selected disabled>Select Room</option>
+                                                                <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                                                                    <option value="<?php echo $row['RoomID']; ?>"><?php echo $row['RoomName']; ?></option>
+                                                                <?php endwhile; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Quantity</label>
+                                                            <input name="quantity" class="form-control" type="number" id="html5-number-input" min="1" />
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                    <h4>Add service</h4>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group form-group-default">
-                                <label>Service</label>
-                                <select name="services[]" class="form-select">
-                                    <option value="">Select services</option>
-                                    <?php while ($row = mysqli_fetch_assoc($resultServices)) : ?>
-                                        <option value="<?php echo $row['ServiceID']; ?>"><?php echo $row['ServiceName']; ?></option>
-                                    <?php endwhile; ?>
-                                </select>
+                                                <h4>Add service</h4>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Service</label>
+                                                            <select name="services[]" class="form-select">
+                                                                <option value="">Select services</option>
+                                                                <?php while ($row = mysqli_fetch_assoc($resultServices)) : ?>
+                                                                    <option value="<?php echo $row['ServiceID']; ?>"><?php echo $row['ServiceName']; ?></option>
+                                                                <?php endwhile; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
                             <!-- end -->
                             <!--Edit Modal  -->
