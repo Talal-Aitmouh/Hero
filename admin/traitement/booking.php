@@ -17,7 +17,7 @@ $sqlbooking = "SELECT
     Booking.CheckOutDate,
     Booking.TotalAmount,
     Booking.Status,
-    Guests.FullName AS GuestName,  -- Make sure this column exists in the Guests table
+    Guests.FullName AS GuestName,
     Rooms.RoomName
 FROM 
     Booking
@@ -26,6 +26,11 @@ INNER JOIN
 INNER JOIN 
     Rooms ON Booking.RoomID = Rooms.RoomID";
 $resultbooking = $conn->query($sqlbooking);
+
+while ($row = $resultbooking->fetch_assoc()) {
+    $reservations[] = $row;
+}
+
 
 
 
@@ -37,6 +42,7 @@ $resultServices = mysqli_query($conn, $queryServices);
 
 $queryGuests = "SELECT * FROM guests";
 $resultGuests = $conn->query($queryGuests);
+
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     if (isset($_POST['delete'])) {
@@ -224,30 +230,37 @@ $resultGuests = $conn->query($queryGuests);
 // }
 
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Database connection // Assume your database connection file is named config.php
-
     // Check if a new guest is being added or an existing guest is selected
     $isNewGuest = isset($_POST['name']) && !empty($_POST['name']);
 
     // Booking information
-    $checkInDate = $_POST['checkInDate'];
-    $checkOutDate = $_POST['checkOutDate'];
-    $roomID = $_POST['roomID'];
-    $quantity = $_POST['quantity']; // Quantity of rooms booked
+    $checkInDate = mysqli_real_escape_string($conn, $_POST['checkInDate']);
+    $checkOutDate = mysqli_real_escape_string($conn, $_POST['checkOutDate']);
+    $roomID = mysqli_real_escape_string($conn, $_POST['roomID']);
+    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']); // Quantity of rooms booked
     $services = isset($_POST['services']) ? $_POST['services'] : [];
+
+    // Validate required fields
+    if (empty($checkInDate) || empty($checkOutDate) || empty($roomID) || empty($quantity)) {
+        die('Please fill in all required fields.');
+    }
 
     if ($isNewGuest) {
         // New guest information
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $address = $_POST['address'];
-        $nationality = $_POST['nationality'];
-        $phone = $_POST['phone'];
-        $passportNumber = $_POST['passport_number'];
-        $dateOfBirth = $_POST['date_of_birth'];
-        $gender = $_POST['gender'];
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $address = mysqli_real_escape_string($conn, $_POST['address']);
+        $nationality = mysqli_real_escape_string($conn, $_POST['nationality']);
+        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+        $passportNumber = mysqli_real_escape_string($conn, $_POST['passport_number']);
+        $dateOfBirth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
+        $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
         // Insert new guest information
         $query = "INSERT INTO guests (FullName, Email, Address, Nationality, Phone, PassportNumber, DateOfBirth, Gender) VALUES ('$name', '$email', '$address', '$nationality', '$phone', '$passportNumber', '$dateOfBirth', '$gender')";
@@ -257,7 +270,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $guestID = mysqli_insert_id($conn);
     } else {
         // Existing guest selected
-        $guestID = $_POST['guest'];
+        $guestID = mysqli_real_escape_string($conn, $_POST['guest']);
     }
 
     // Fetch room price and quantity
@@ -312,14 +325,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insert into booking services table
-        if (!empty($services)) {
-            foreach ($services as $serviceID) {
-                $query = "INSERT INTO bookingservices (BookingID, ServiceID) VALUES ('$bookingID', '$serviceID')";
-                if (!mysqli_query($conn, $query)) {
-                    die("Error inserting booking services: " . mysqli_error($conn));
-                }
-            }
-        }
+        
 
         // Decrease the quantity of available rooms
         $newRoomQuantity = $roomQuantity - $quantity;
