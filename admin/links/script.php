@@ -268,8 +268,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             address: editModal.querySelector('#editAddress2'),
             checkInDate: editModal.querySelector('#editCheckInDate'),
             checkOutDate: editModal.querySelector('#editCheckOutDate'),
-            roomId: editModal.querySelector('#exampleFormControlSelect1'),
-            quantity: editModal.querySelector('#html5-number-input'),
+            roomId: editModal.querySelector('#editroom'),
+            quantity: editModal.querySelector('#editquantity'),
         };
 
         modalElements.name.value = reservationDetails.name;

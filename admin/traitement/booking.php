@@ -9,8 +9,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-$reservations = [];
 $sqlbooking = "SELECT 
     Booking.BookingID,
     Booking.CheckInDate,
@@ -34,9 +32,7 @@ FROM
 INNER JOIN 
     guests AS Guests ON Booking.GuestID = Guests.GuestID
 INNER JOIN 
-    rooms AS Rooms ON Booking.RoomID = Rooms.RoomID
-GROUP BY 
-    Booking.BookingID";
+    rooms AS Rooms ON Booking.RoomID = Rooms.RoomID";
 
 $resultbooking = $conn->query($sqlbooking);
 
@@ -44,6 +40,7 @@ $reservations = [];
 while ($row = $resultbooking->fetch_assoc()) {
     $reservations[] = $row;
 }
+
 
 
 
@@ -339,7 +336,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insert into booking services table
-        
+
 
         // Decrease the quantity of available rooms
         $newRoomQuantity = $roomQuantity - $quantity;
@@ -354,5 +351,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error inserting booking information: " . mysqli_error($conn));
     }
 }
-
-?>

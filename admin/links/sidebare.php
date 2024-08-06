@@ -10,7 +10,7 @@
                     <i class="gg-menu-right"></i>
                 </button>
                 <button class="btn btn-toggle sidenav-toggler">
-                    <i class="gg-menu-left"></i>
+                     <i class="gg-menu-left"></i>
                 </button>
             </div>
             <button class="topbar-toggler more">

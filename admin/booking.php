@@ -341,7 +341,7 @@ include './traitement/booking.php'
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Quantity</label>
-                                                            <input name="quantity" class="form-control" type="number" id="html5-number-input" min="1" />
+                                                            <input name="quantity" class="form-control" type="number" id="editquantity" min="1" />
                                                         </div>
                                                     </div>
                                                 </div>
