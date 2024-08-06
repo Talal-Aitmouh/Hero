@@ -69,7 +69,9 @@ include './traitement/booking.php'
                                                     <form action="./traitement/booking.php" method="POST">
                                                         <div class="form-button-action">
                                                             <input type="hidden" name="bookingID" value="<?php echo htmlspecialchars($reservation['BookingID']); ?>">
-                                                            <button class="btn btn-link btn-primary btn-lg" type="button" data-bs-toggle="modal" name="edit" data-bs-target="#edit">
+                                                            <button class="btn btn-link btn-primary btn-lg" type="button" data-bs-toggle="modal" name="edit" data-bs-target="#edit" data-name="<?php echo $reservation['GuestName']; ?>" data-phone="<?php echo $reservation['GuestPhone']; ?>" data-nationality="<?php echo $reservation['GuestNationality']; ?>" data-email="<?php echo $reservation['GuestEmail']; ?>" data-passport-number="<?php echo $reservation['GuestPassportNumber']; ?>" data-date-of-birth="<?php echo $reservation['GuestDateOfBirth']; ?>" data-gender="<?php echo $reservation['GuestGender']; ?>" data-address="<?php echo $reservation['GuestAddress']; ?>" data-checkin-date="<?php echo $reservation['CheckInDate']; ?>" data-checkout-date="<?php echo $reservation['CheckOutDate']; ?>" data-room-id="<?php echo $reservation['RoomName']; ?>" data-quantity="<?php echo $reservation['RoomQuantity']; ?>" >
+
+
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                             <button type="submit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" name="delete" data-original-title="Remove">
@@ -255,43 +257,70 @@ include './traitement/booking.php'
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
-                                                            <label>Name Guest</label>
-                                                            <input name="name" value="<?php echo $reservation['GuestName']; ?>" id="addName" type="text" class="form-control" placeholder="Enter name" />
+                                                            <label>Name</label>
+                                                            <input name="name" id="editName" type="text" class="form-control" placeholder="Enter name" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
-                                                            <label>Room</label>
-                                                            <input name="phone" id="addPhone" type="text" value="<?php echo $reservation['RoomName']; ?>" class="form-control" placeholder="Enter phone number" />
-
+                                                            <label>Phone</label>
+                                                            <input name="phone" id="editPhone" type="text" class="form-control" placeholder="Enter phone number" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
-                                                            <label>Total Amount</label>
-                                                            <input name="nationality" value="<?php echo $reservation['TotalAmount']; ?>" id="addNationality" type="text" class="form-control" placeholder="Enter nationality" />
+                                                            <label>Nationality</label>
+                                                            <input name="nationality" id="editNationality" type="text" class="form-control" placeholder="Enter nationality" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Email</label>
+                                                            <input name="email" id="editEmail" type="email" class="form-control" placeholder="Enter email" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
-                                                            <label>Status</label>
-                                                            <input name="email" value="<?php echo $reservation['Status']; ?>" id="addEmail" type="email" class="form-control" placeholder="Enter email" />
+                                                            <label>Passport Number</label>
+                                                            <input name="passport_number" id="editPassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Date of Birth</label>
+                                                            <input name="date_of_birth" id="editDateOfBirth" type="date" class="form-control" placeholder="Enter date of birth" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Gender</label>
+                                                            <select name="gender" id="editGender" class="form-control" required>
+                                                                <option value="">Select gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-group-default">
+                                                            <label>Address</label>
+                                                            <input name="address" id="editAddress2" type="text" class="form-control" placeholder="Enter address" />
                                                         </div>
                                                     </div>
 
-
-
-
-                                                    <div class="col-md-4">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Check-In Date</label>
-                                                            <input name="checkInDate" value="<?php echo $reservation['CheckInDate']; ?>" id="addCheckInDate" type="date" class="form-control" placeholder="Select check-in date" />
+                                                            <input name="checkInDate" id="editCheckInDate" type="date" class="form-control" placeholder="Select check-in date" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Check-Out Date</label>
-                                                            <input name="checkOutDate" value="<?php echo $reservation['CheckOutDate']; ?>" id="addCheckOutDate" type="date" class="form-control" placeholder="Select check-out date" />
+                                                            <input name="checkOutDate" id="editCheckOutDate" type="date" class="form-control" placeholder="Select check-out date" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -301,8 +330,8 @@ include './traitement/booking.php'
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Rooms</label>
-                                                            <select name="roomID" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                                                <option selected disabled>Open this select menu</option>
+                                                            <select name="roomID" class="form-select" id="roomID" aria-label="Default select example">
+                                                                <option selected disabled>Select Room</option>
                                                                 <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                                     <option value="<?php echo $row['RoomID']; ?>"><?php echo $row['RoomName']; ?></option>
                                                                 <?php endwhile; ?>
@@ -317,14 +346,15 @@ include './traitement/booking.php'
                                                     </div>
                                                 </div>
 
-                                                <h4>Add service</h4>
+                                                <h4>edit service</h4>
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Service</label>
-                                                            <select name="services[]" class="form-select" multiple id="exampleFormControlSelect2" aria-label="Default select example">
+                                                            <select name="services[]" class="form-select">
+                                                                <option value="">Select services</option>
                                                                 <?php while ($row = mysqli_fetch_assoc($resultServices)) : ?>
-                                                                    <option value="<?php echo $row['ServiceID']; ?>"><?php echo $row['Name']; ?></option>
+                                                                    <option value="<?php echo $row['ServiceID']; ?>"><?php echo $row['ServiceName']; ?></option>
                                                                 <?php endwhile; ?>
                                                             </select>
                                                         </div>

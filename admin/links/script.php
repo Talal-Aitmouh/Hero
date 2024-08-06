@@ -235,3 +235,67 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    var editModal = document.getElementById('edit');
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        
+        var reservationDetails = {
+            name: button.getAttribute('data-name'),
+            phone: button.getAttribute('data-phone'),
+            nationality: button.getAttribute('data-nationality'),
+            email: button.getAttribute('data-email'),
+            passportNumber: button.getAttribute('data-passport-number'),
+            dateOfBirth: button.getAttribute('data-date-of-birth'),
+            gender: button.getAttribute('data-gender'),
+            address: button.getAttribute('data-address'),
+            checkInDate: button.getAttribute('data-checkin-date'),
+            checkOutDate: button.getAttribute('data-checkout-date'),
+            roomId: button.getAttribute('data-room-id'),
+            quantity: button.getAttribute('data-quantity'),
+        };
+
+        // Update the modal's content
+        var modalElements = {
+            name: editModal.querySelector('#editName'),
+            phone: editModal.querySelector('#editPhone'),
+            nationality: editModal.querySelector('#editNationality'),
+            email: editModal.querySelector('#editEmail'),
+            passportNumber: editModal.querySelector('#editPassportNumber'),
+            dateOfBirth: editModal.querySelector('#editDateOfBirth'),
+            gender: editModal.querySelector('#editGender'),
+            address: editModal.querySelector('#editAddress2'),
+            checkInDate: editModal.querySelector('#editCheckInDate'),
+            checkOutDate: editModal.querySelector('#editCheckOutDate'),
+            roomId: editModal.querySelector('#exampleFormControlSelect1'),
+            quantity: editModal.querySelector('#html5-number-input'),
+        };
+
+        modalElements.name.value = reservationDetails.name;
+        modalElements.phone.value = reservationDetails.phone;
+        modalElements.nationality.value = reservationDetails.nationality;
+        modalElements.email.value = reservationDetails.email;
+        modalElements.passportNumber.value = reservationDetails.passportNumber;
+        modalElements.dateOfBirth.value = reservationDetails.dateOfBirth;
+        modalElements.gender.value = reservationDetails.gender;
+        modalElements.address.value = reservationDetails.address;
+        modalElements.checkInDate.value = reservationDetails.checkInDate;
+        modalElements.checkOutDate.value = reservationDetails.checkOutDate;
+        modalElements.quantity.value = reservationDetails.quantity;
+
+        // Populate the room select
+        modalElements.roomId.querySelectorAll('option').forEach(option => {
+            if (option.value == reservationDetails.roomId) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+        });
+
+        // Populate the services select
+        
+    });
+});
+
+</script>

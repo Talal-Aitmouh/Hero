@@ -18,19 +18,32 @@ $sqlbooking = "SELECT
     Booking.TotalAmount,
     Booking.Status,
     Guests.FullName AS GuestName,
-    Rooms.RoomName
+    Guests.Email AS GuestEmail,
+    Guests.Phone AS GuestPhone,
+    Guests.Address AS GuestAddress,
+    Guests.Nationality AS GuestNationality,
+    Guests.PassportNumber AS GuestPassportNumber,
+    Guests.DateOfBirth AS GuestDateOfBirth,
+    Guests.Gender AS GuestGender,
+    Rooms.RoomName,
+    Rooms.Price AS RoomPrice,
+    Rooms.Description AS RoomDescription,
+    Rooms.Quantity AS RoomQuantity
 FROM 
-    Booking
+    booking AS Booking
 INNER JOIN 
-    Guests ON Booking.GuestID = Guests.GuestID
+    guests AS Guests ON Booking.GuestID = Guests.GuestID
 INNER JOIN 
-    Rooms ON Booking.RoomID = Rooms.RoomID";
+    rooms AS Rooms ON Booking.RoomID = Rooms.RoomID
+GROUP BY 
+    Booking.BookingID";
+
 $resultbooking = $conn->query($sqlbooking);
 
+$reservations = [];
 while ($row = $resultbooking->fetch_assoc()) {
     $reservations[] = $row;
 }
-
 
 
 
@@ -40,8 +53,9 @@ $result = mysqli_query($conn, $queryroom);
 $queryServices = "SELECT ServiceID, ServiceName, Price FROM Service";
 $resultServices = mysqli_query($conn, $queryServices);
 
-$queryGuests = "SELECT * FROM guests";
+$queryGuests = "SELECT * FROM Guests";
 $resultGuests = $conn->query($queryGuests);
+
 
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
