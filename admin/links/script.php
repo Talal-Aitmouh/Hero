@@ -234,14 +234,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 </script>
-
 <script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-    var editModal = document.getElementById('edit');
-    editModal.addEventListener('show.bs.modal', function (event) {
+document.addEventListener('DOMContentLoaded', (event) => {
+    var viewModal = document.getElementById('viewBooking');
+    viewModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget; // Button that triggered the modal
-        
-        var reservationDetails = {
+
+        var bookingDetails = {
             name: button.getAttribute('data-name'),
             phone: button.getAttribute('data-phone'),
             nationality: button.getAttribute('data-nationality'),
@@ -252,50 +251,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
             address: button.getAttribute('data-address'),
             checkInDate: button.getAttribute('data-checkin-date'),
             checkOutDate: button.getAttribute('data-checkout-date'),
-            roomId: button.getAttribute('data-room-id'),
+            roomName: button.getAttribute('data-room-name'),
             quantity: button.getAttribute('data-quantity'),
+            services: button.getAttribute('data-services').split(',')
         };
 
         // Update the modal's content
         var modalElements = {
-            name: editModal.querySelector('#editName'),
-            phone: editModal.querySelector('#editPhone'),
-            nationality: editModal.querySelector('#editNationality'),
-            email: editModal.querySelector('#editEmail'),
-            passportNumber: editModal.querySelector('#editPassportNumber'),
-            dateOfBirth: editModal.querySelector('#editDateOfBirth'),
-            gender: editModal.querySelector('#editGender'),
-            address: editModal.querySelector('#editAddress2'),
-            checkInDate: editModal.querySelector('#editCheckInDate'),
-            checkOutDate: editModal.querySelector('#editCheckOutDate'),
-            roomId: editModal.querySelector('#editroom'),
-            quantity: editModal.querySelector('#editquantity'),
+            name: viewModal.querySelector('#viewName'),
+            phone: viewModal.querySelector('#viewPhone'),
+            nationality: viewModal.querySelector('#viewNationality'),
+            email: viewModal.querySelector('#viewEmail'),
+            passportNumber: viewModal.querySelector('#viewPassportNumber'),
+            dateOfBirth: viewModal.querySelector('#viewDateOfBirth'),
+            gender: viewModal.querySelector('#viewGender'),
+            address: viewModal.querySelector('#viewAddress'),
+            checkInDate: viewModal.querySelector('#viewCheckInDate'),
+            checkOutDate: viewModal.querySelector('#viewCheckOutDate'),
+            room: viewModal.querySelector('#viewRoom'),
+            quantity: viewModal.querySelector('#viewQuantity'),
+            services: viewModal.querySelector('#viewServices')
         };
 
-        modalElements.name.value = reservationDetails.name;
-        modalElements.phone.value = reservationDetails.phone;
-        modalElements.nationality.value = reservationDetails.nationality;
-        modalElements.email.value = reservationDetails.email;
-        modalElements.passportNumber.value = reservationDetails.passportNumber;
-        modalElements.dateOfBirth.value = reservationDetails.dateOfBirth;
-        modalElements.gender.value = reservationDetails.gender;
-        modalElements.address.value = reservationDetails.address;
-        modalElements.checkInDate.value = reservationDetails.checkInDate;
-        modalElements.checkOutDate.value = reservationDetails.checkOutDate;
-        modalElements.quantity.value = reservationDetails.quantity;
+        modalElements.name.textContent = bookingDetails.name;
+        modalElements.phone.textContent = bookingDetails.phone;
+        modalElements.nationality.textContent = bookingDetails.nationality;
+        modalElements.email.textContent = bookingDetails.email;
+        modalElements.passportNumber.textContent = bookingDetails.passportNumber;
+        modalElements.dateOfBirth.textContent = bookingDetails.dateOfBirth;
+        modalElements.gender.textContent = bookingDetails.gender;
+        modalElements.address.textContent = bookingDetails.address;
+        modalElements.checkInDate.textContent = bookingDetails.checkInDate;
+        modalElements.checkOutDate.textContent = bookingDetails.checkOutDate;
+        modalElements.room.textContent = bookingDetails.roomName;
+        modalElements.quantity.textContent = bookingDetails.quantity;
 
-        // Populate the room select
-        modalElements.roomId.querySelectorAll('option').forEach(option => {
-            if (option.value == reservationDetails.roomId) {
-                option.selected = true;
-            } else {
-                option.selected = false;
-            }
-        });
-
-        // Populate the services select
-        
+        // Populate services
+        modalElements.services.textContent = bookingDetails.services.join(', ');
     });
 });
-
 </script>

@@ -27,6 +27,7 @@ $sqlbooking = "SELECT
     Rooms.Price AS RoomPrice,
     Rooms.Description AS RoomDescription,
     Rooms.Quantity AS RoomQuantity
+    
 FROM 
     booking AS Booking
 INNER JOIN 
@@ -47,8 +48,15 @@ while ($row = $resultbooking->fetch_assoc()) {
 $queryroom = "SELECT RoomID, RoomName, Price, Quantity FROM Rooms";
 $result = mysqli_query($conn, $queryroom);
 
+$queryroom2 =  "SELECT RoomID, RoomName, Price, Quantity FROM Rooms";
+$result2 = mysqli_query($conn, $queryroom2);
+
+
 $queryServices = "SELECT ServiceID, ServiceName, Price FROM Service";
 $resultServices = mysqli_query($conn, $queryServices);
+
+$queryServices2 = "SELECT ServiceID, ServiceName, Price FROM Service";
+$resultServices2 = mysqli_query($conn, $queryServices);
 
 $queryGuests = "SELECT * FROM Guests";
 $resultGuests = $conn->query($queryGuests);
@@ -57,7 +65,7 @@ $resultGuests = $conn->query($queryGuests);
 
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
     // Check if a new guest is being added or an existing guest is selected
     $isNewGuest = isset($_POST['name']) && !empty($_POST['name']);
 
@@ -162,3 +170,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error inserting booking information: " . mysqli_error($conn));
     }
 }
+
+
+
+
+?>
