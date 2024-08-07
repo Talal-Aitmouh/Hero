@@ -330,7 +330,7 @@ include './traitement/booking.php'
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-group-default">
                                                             <label>Rooms</label>
-                                                            <select name="roomID" class="form-select" id="roomID" aria-label="Default select example">
+                                                            <select name="roomName" class="form-select" id="roomID" aria-label="Default select example">
                                                                 <option selected disabled>Select Room</option>
                                                                 <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                                     <option value="<?php echo $row['RoomID']; ?>"><?php echo $row['RoomName']; ?></option>
