@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             checkOutDate: button.getAttribute('data-checkout-date'),
             roomName: button.getAttribute('data-room-name'),
             quantity: button.getAttribute('data-quantity'),
-            services: button.getAttribute('data-services').split(',')
+            services: button.getAttribute('data-services')
         };
 
         // Update the modal's content

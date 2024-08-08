@@ -10,6 +10,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
+
 if (isset($_POST["submit"])) {
     $roomID = mysqli_real_escape_string($conn, $_POST['RoomID']);
     $name = mysqli_real_escape_string($conn, $_POST['Name']);
@@ -20,6 +22,7 @@ if (isset($_POST["submit"])) {
     $numberBed = mysqli_real_escape_string($conn, $_POST['NumberBed']);
     $bedType = mysqli_real_escape_string($conn, $_POST['BedType']);
     $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
+    
 
     $upload_dir = '../../img/rooms/';
     if (!is_dir($upload_dir)) {

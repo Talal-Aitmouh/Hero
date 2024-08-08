@@ -82,7 +82,7 @@ include './traitement/booking.php'
         data-checkout-date="<?php echo htmlspecialchars($reservation['CheckOutDate'], ENT_QUOTES, 'UTF-8'); ?>"
         data-room-name="<?php echo htmlspecialchars($reservation['RoomName'], ENT_QUOTES, 'UTF-8'); ?>"
         data-quantity="<?php echo htmlspecialchars($reservation['RoomQuantity'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-services="<?php echo htmlspecialchars($reservation['Services']), ENT_QUOTES, 'UTF-8'; ?>">
+        >
 
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
