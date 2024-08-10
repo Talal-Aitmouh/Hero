@@ -291,3 +291,40 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 </script>
+<script>
+   document.addEventListener('DOMContentLoaded', (event) => {
+    var billingModal = document.getElementById('addRowModal');
+    billingModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+
+        var billingDetails = {
+            name: button.getAttribute('data-name'),
+            email: button.getAttribute('data-email'),
+            status: button.getAttribute('data-status'),
+            amount: button.getAttribute('data-amount'),
+            date: button.getAttribute('data-date'),
+            billingId: button.getAttribute('data-id') // Assuming this is the BillingID
+        };
+
+        // Update the modal's content
+        var modalElements = {
+            name: billingModal.querySelector('#guestName'),
+            email: billingModal.querySelector('#guestEmail'),
+            status: billingModal.querySelector('#billingStatus'),
+            amountText: billingModal.querySelector('#billingAmount'),
+            amountInput: billingModal.querySelector('#transactionAmount'),
+            date: billingModal.querySelector('#billingDate'),
+            billingId: billingModal.querySelector('input[name="BillingID"]')
+        };
+
+        modalElements.name.textContent = billingDetails.name;
+        modalElements.email.textContent = billingDetails.email;
+        modalElements.status.textContent = billingDetails.status;
+        modalElements.amountText.textContent = billingDetails.amount;
+        modalElements.amountInput.value = billingDetails.amount; // Prefill the transaction amount
+        modalElements.date.textContent = billingDetails.date;
+        modalElements.billingId.value = billingDetails.billingId;
+    });
+});
+
+</script>

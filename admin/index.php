@@ -224,8 +224,8 @@ include './traitement/dashboard.php';
                           <th scope="col">Payment Num</th>
                           <th scope="col" class="text-start">Date</th>
                           <th scope="col" class="text-end">Amount</th>
+                          <th scope="col" class="text-end">Guest Name</th>
                           <th scope="col" class="text-end">Status</th>
-                          <th scope="col" class="text-end">Description</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -234,10 +234,10 @@ include './traitement/dashboard.php';
                             <th scope="row">
                               # <?php echo $row['TransactionID']; ?>
                             </th>
-                            <td class="text-start"><?php echo $row['Date']; ?></td>
+                            <td class="text-start"><?php echo $row['TransactionDate']; ?></td>
                             <td class="text-end">$<?php echo $row['Amount']; ?></td>
                             <td class="text-end"><?php echo $row['GuestName']; ?></td>
-                            <td class="text-end"><?php echo $row['Description']; ?></td>
+                            <td class="text-end"><?php echo $row['TransactionStatus']; ?></td>
                           </tr>
                         <?php endwhile; ?>
 

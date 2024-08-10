@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     $stmt->bind_param("i", $bookingID);
 
     if ($stmt->execute()){
-        header('Location: ../booking');
+        header('Location: ../booking.php');
         exit();
     }else{
         echo "Error deleting record: " . $stmt->error;

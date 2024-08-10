@@ -20,6 +20,12 @@
     border-style: solid;
     transform-origin: bottom left;
     transform: rotate(45deg); }
+    .disabled {
+      pointer-events: none;
+      display: none;
+      opacity: 0.5;
+  }
+  
 
 .custom-template {
   position: fixed;
