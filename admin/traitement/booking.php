@@ -171,7 +171,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+    // Delete booking information
+    $bookingID = $_POST['bookingID'];
+    $sqlbooking = "DELETE FROM booking WHERE BookingID = ? ";
+    $stmt = $conn->prepare($sqlbooking);
+    $stmt->bind_param("i", $bookingID);
 
+    if ($stmt->execute()){
+        header('Location: ../booking');
+        exit();
+    }else{
+        echo "Error deleting record: " . $stmt->error;
+    }
+    $stmt->close();
+
+
+
+}
+$conn->close();
 
 
 ?>

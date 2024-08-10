@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
     }
 
     $sql = "UPDATE Rooms SET RoomName='$name', Type='$type', Capacity='$capacity', Price='$price', 
-            Description='$description', NumberBed='$numberBed', BedType='$bedType', quantity='$quantity' ";
+            Description='$description', NumberBed='$numberBed', TypeBed='$bedType', quantity='$quantity' ";
     if ($photo_path !== '') {
         $sql .= ", Photo='$photo'";
     }

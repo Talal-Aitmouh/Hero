@@ -267,49 +267,49 @@ include './traitement/booking.php'
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Name</label>
-                                                        <p id="viewName">John Doe</p>
+                                                        <p id="viewName"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Phone</label>
-                                                        <p id="viewPhone">+1234567890</p>
+                                                        <p id="viewPhone"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Nationality</label>
-                                                        <p id="viewNationality">American</p>
+                                                        <p id="viewNationality"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <p id="viewEmail">john.doe@example.com</p>
+                                                        <p id="viewEmail"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Passport Number</label>
-                                                        <p id="viewPassportNumber">A1234567</p>
+                                                        <p id="viewPassportNumber"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Date of Birth</label>
-                                                        <p id="viewDateOfBirth">1985-07-20</p>
+                                                        <p id="viewDateOfBirth"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Gender</label>
-                                                        <p id="viewGender">Male</p>
+                                                        <p id="viewGender"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Address</label>
-                                                        <p id="viewAddress">123 Main St, Anytown, USA</p>
+                                                        <p id="viewAddress"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -317,13 +317,13 @@ include './traitement/booking.php'
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Check-In Date</label>
-                                                        <p id="viewCheckInDate">2024-08-01</p>
+                                                        <p id="viewCheckInDate"></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Check-Out Date</label>
-                                                        <p id="viewCheckOutDate">2024-08-05</p>
+                                                        <p id="viewCheckOutDate"></p>
                                                     </div>
                                                 </div>
                                             </div>
