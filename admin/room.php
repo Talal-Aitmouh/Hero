@@ -56,7 +56,7 @@ include './traitement/room.php';
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="addRoomForm" action="./traitement/addroom.php" method="POST" enctype="multipart/form-data">
+                                            <form id="addRoomForm" action="./traitement/room.php" method="POST" enctype="multipart/form-data">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group form-group-default">
@@ -176,7 +176,7 @@ include './traitement/room.php';
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="editRoomForm" action="./traitement/editroom.php" method="POST" enctype="multipart/form-data">
+                                            <form id="editRoomForm" action="./traitement/room.php" method="POST" enctype="multipart/form-data">
                                                 <input type="hidden" id="editRoomID" name="RoomID">
                                                 <div class="row">
                                                     <div class="col-md-4">
