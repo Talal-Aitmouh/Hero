@@ -63,9 +63,7 @@ $resultGuests = $conn->query($queryGuests);
 
 
 
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     // Check if a new guest is being added or an existing guest is selected
     $isNewGuest = isset($_POST['name']) && !empty($_POST['name']);
 
@@ -92,8 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
         $dateOfBirth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
         $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
-        // Insert new guest information
-        $query = "INSERT INTO guests (FullName, Email, Address, Nationality, Phone, PassportNumber, DateOfBirth, Gender) VALUES ('$name', '$email', '$address', '$nationality', '$phone', '$passportNumber', '$dateOfBirth', '$gender')";
+        // Insert new guest information including check-in and check-out dates
+        $query = "INSERT INTO guests (FullName, Email, Address, Nationality, Phone, PassportNumber, DateOfBirth, Gender, CheckInDate, CheckOutDate) 
+                  VALUES ('$name', '$email', '$address', '$nationality', '$phone', '$passportNumber', '$dateOfBirth', '$gender', '$checkInDate', '$checkOutDate')";
         if (!mysqli_query($conn, $query)) {
             die("Error inserting new guest: " . mysqli_error($conn));
         }
@@ -101,6 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
     } else {
         // Existing guest selected
         $guestID = mysqli_real_escape_string($conn, $_POST['guest']);
+
+        // Update the guest's check-in and check-out dates
+        $query = "UPDATE guests SET CheckInDate = '$checkInDate', CheckOutDate = '$checkOutDate' WHERE GuestID = '$guestID'";
+        if (!mysqli_query($conn, $query)) {
+            die("Error updating guest dates: " . mysqli_error($conn));
+        }
     }
 
     // Fetch room price and quantity
@@ -133,8 +138,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
             $query = "SELECT Price FROM service WHERE ServiceID = '$serviceID'";
             $result = mysqli_query($conn, $query);
             if ($result) {
+                $date1 = new DateTime($checkInDate);
+                $date2 = new DateTime($checkOutDate);
+                $interval = $date1->diff($date2);
+                $numDays = $interval->days;
                 $service = mysqli_fetch_assoc($result);
-                $totalAmount += $service['Price'];
+                $totalAmount += $service['Price'] * $numDays ;
             } else {
                 die("Error fetching service details: " . mysqli_error($conn));
             }
@@ -143,19 +152,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add']) ) {
 
     // Insert booking information
     $status = 'Booked'; // Initial status
-    $query = "INSERT INTO booking (GuestID, RoomID, BookingDate, CheckInDate, CheckOutDate, Status, TotalAmount) VALUES ('$guestID', '$roomID', NOW(), '$checkInDate', '$checkOutDate', '$status', '$totalAmount')";
+    $query = "INSERT INTO booking (GuestID, RoomID, BookingDate, CheckInDate, CheckOutDate, Status, TotalAmount) 
+              VALUES ('$guestID', '$roomID', NOW(), '$checkInDate', '$checkOutDate', '$status', '$totalAmount')";
     if (mysqli_query($conn, $query)) {
         $bookingID = mysqli_insert_id($conn);
 
         // Insert billing information
         $paymentStatus = 'Pending'; // Initial payment status
-        $query = "INSERT INTO billing (GuestID, BookingID, Amount, BillingDate, PaymentStatus) VALUES ('$guestID', '$bookingID', '$totalAmount', NOW(), '$paymentStatus')";
+        $query = "INSERT INTO billing (GuestID, BookingID, Amount, BillingDate, PaymentStatus) 
+                  VALUES ('$guestID', '$bookingID', '$totalAmount', NOW(), '$paymentStatus')";
         if (!mysqli_query($conn, $query)) {
             die("Error inserting billing information: " . mysqli_error($conn));
         }
-
-        // Insert into booking services table
-
 
         // Decrease the quantity of available rooms
         $newRoomQuantity = $roomQuantity - $quantity;
@@ -178,18 +186,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     $stmt = $conn->prepare($sqlbooking);
     $stmt->bind_param("i", $bookingID);
 
-    if ($stmt->execute()){
+    if ($stmt->execute()) {
         header('Location: ../booking.php');
         exit();
-    }else{
+    } else {
         echo "Error deleting record: " . $stmt->error;
     }
     $stmt->close();
-
-
-
 }
+
 $conn->close();
-
-
-?>

@@ -2,7 +2,7 @@
 include '../config/db.php';
 
 // Fetch total amount from billing
-$sql = "SELECT SUM(Amount) as total_amount FROM billing";
+$sql = "SELECT SUM(Amount) as total_amount FROM transactions";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $total_amount = number_format($row['total_amount'], 2);
