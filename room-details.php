@@ -13,7 +13,7 @@ if ($room_id > 0) {
     $stmt->execute();
     $room_result = $stmt->get_result();
     $room = $room_result->fetch_assoc();
-    
+
     // Fetch room images
     $query_images = "SELECT ImagePath FROM roomimages WHERE RoomID = ?";
     $stmt_images = $conn->prepare($query_images);
@@ -33,7 +33,7 @@ if ($room_id > 0) {
 <html lang="zxx">
 
 <head>
-<?php  include './links/head.php'; ?>
+    <?php include './links/head.php'; ?>
 </head>
 
 <body>
@@ -95,7 +95,7 @@ if ($room_id > 0) {
                                     <li><a href="#">Register</a></li>
                                 </ul>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -143,129 +143,140 @@ if ($room_id > 0) {
 
     <!-- Room Details Slider Begin -->
     <!-- Room Details Slider Begin -->
-<div class="room-details-slider">
-    <div class="container">
-        <div class="room__details__pic__slider owl-carousel">
-        <div class="room__details__pic__slider__item set-bg" data-setbg="img/rooms/<?php echo $room['Image']; ?>"></div>
+    <div class="room-details-slider">
+        <div class="container">
+            <div class="room__details__pic__slider owl-carousel">
+                <div class="room__details__pic__slider__item set-bg" data-setbg="img/rooms/<?php echo $room['Image']; ?>"></div>
 
-            <?php foreach ($images as $image): ?>
-                <div class="room__details__pic__slider__item set-bg" data-setbg="img/rooms/<?php echo $image['ImagePath']; ?>"></div>
-            <?php endforeach; ?>
+                <?php foreach ($images as $image): ?>
+                    <div class="room__details__pic__slider__item set-bg" data-setbg="img/rooms/<?php echo $image['ImagePath']; ?>"></div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
-</div>
-<!-- Room Details Slider End -->
+    <!-- Room Details Slider End -->
 
-<!-- Rooms Details Section Begin -->
-<section class="room-details spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="room__details__content">
-                    <div class="room__details__rating">
-                        <div class="room__details__hotel">
-                            <span>Hotel</span>
-                            <div class="room__details__hotel__rating">
-                                <span class="icon_star"></span>
-                                <span class="icon_star"></span>
-                                <span class="icon_star"></span>
-                                <span class="icon_star"></span>
-                                <span class="icon_star-half_alt"></span>
-                            </div>
-                        </div>
-                        <div class="room__details__advisor">
-                            <img src="img/rooms/details/tripadvisor.png" alt="">
-                            <div class="room__details__advisor__rating">
-                                <span class="icon_star"></span>
-                                <span class="icon_star"></span>
-                                <span class="icon_star"></span>
-                                <span class="icon_star"></span>
-                                <span class="icon_star-half_alt"></span>
-                            </div>
-                            <span class="review">(1000 Reviews)</span>
-                        </div>
-                    </div>
-                    <div class="room__details__title">
-                        <h2><?php echo $room['RoomName']; ?></h2>
-                        <a href="#" class="primary-btn">Booking Now</a>
-                    </div>
-                    <div class="room__details__desc">
-                        <h2>Description:</h2>
-                        <p><?php echo $room['Description']; ?></p>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="room__details__facilities">
-                                <h2>Others facilities:</h2>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <ul>
-                                            <li><span class="icon_check"></span> Takami Bridal Attire</li>
-                                            <li><span class="icon_check"></span> Esthetic Salon</li>
-                                            <li><span class="icon_check"></span> Multilingual staff</li>
-                                            <li><span class="icon_check"></span> Dry cleaning and laundry</li>
-                                            <li><span class="icon_check"></span> Credit cards accepted</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <ul>
-                                            <li><span class="icon_check"></span> Rent-a-car</li>
-                                            <li><span class="icon_check"></span> Reservation & confirmation</li>
-                                            <li><span class="icon_check"></span> Babysitter upon request</li>
-                                            <li><span class="icon_check"></span> 24-hour currency exchange</li>
-                                            <li><span class="icon_check"></span> 24-hour Manager on Duty</li>
-                                        </ul>
-                                    </div>
+    <!-- Rooms Details Section Begin -->
+    <section class="room-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="room__details__content">
+                        <div class="room__details__rating">
+                            <div class="room__details__hotel">
+                                <span>Hotel</span>
+                                <div class="room__details__hotel__rating">
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star-half_alt"></span>
                                 </div>
                             </div>
+                            <div class="room__details__advisor">
+                                <img src="img/rooms/details/tripadvisor.png" alt="">
+                                <div class="room__details__advisor__rating">
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star-half_alt"></span>
+                                </div>
+                                <span class="review">(1000 Reviews)</span>
+                            </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="room__details__more__facilities">
-                                <h2>Most popular facilities:</h2>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-1.png" alt=""></div>
-                                            <h6>Air Conditioning</h6>
+                        <div class="room__details__title">
+                            <h2><?php echo $room['RoomName']; ?></h2>
+                            <h3 class="ml-5 mt-3" >$ <span><?php echo $room['Price']; ?></span>  /day</h3>
+                            <a href="#" class="primary-btn">Booking Now</a>
+                        </div>
+                        
+                        <div class="room__details__desc">
+                            <h2>Description:</h2>
+                            <p><?php echo $room['Description']; ?></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="room__details__facilities">
+                                    <h2>Others facilities:</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <ul>
+                                                <li><span class="icon_check"></span> Takami Bridal Attire</li>
+                                                <li><span class="icon_check"></span> Esthetic Salon</li>
+                                                <li><span class="icon_check"></span> Multilingual staff</li>
+                                                <li><span class="icon_check"></span> Dry cleaning and laundry</li>
+                                                <li><span class="icon_check"></span> Credit cards accepted</li>
+                                            </ul>
                                         </div>
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-2.png" alt=""></div>
-                                            <h6>Cable TV</h6>
-                                        </div>
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-3.png" alt=""></div>
-                                            <h6>Free drinks</h6>
-                                        </div>
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-4.png" alt=""></div>
-                                            <h6>Unlimited Wifi</h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-5.png" alt=""></div>
-                                            <h6>Restaurant quality</h6>
-                                        </div>
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-6.png" alt=""></div>
-                                            <h6>Service 24/24</h6>
-                                        </div>
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-7.png" alt=""></div>
-                                            <h6>Gym Centre</h6>
-                                        </div>
-                                        <div class="room__details__more__facilities__item">
-                                            <div class="icon"><img src="img/rooms/details/facilities/fac-8.png" alt=""></div>
-                                            <h6>Spa & Wellness</h6>
+                                        <div class="col-lg-6">
+                                            <ul>
+                                                <li><span class="icon_check"></span> Rent-a-car</li>
+                                                <li><span class="icon_check"></span> Reservation & confirmation</li>
+                                                <li><span class="icon_check"></span> Babysitter upon request</li>
+                                                <li><span class="icon_check"></span> 24-hour currency exchange</li>
+                                                <li><span class="icon_check"></span> 24-hour Manager on Duty</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="room__details__more__facilities">
+                                    <h2>Most popular facilities:</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <?php if ($room['Climatiseur']) { ?>
+                                                <div class="room__details__more__facilities__item">
+                                                    <div class="icon"><img src="img/rooms/details/facilities/fac-1.png" alt="Air Conditioning"></div>
+                                                    <h6>Air Conditioning</h6>
+                                                </div>
+                                            <?php } ?>
+                                            <?php if ($room['TV']) { ?>
+                                                <div class="room__details__more__facilities__item">
+                                                    <div class="icon"><img src="img/rooms/details/facilities/fac-2.png" alt="Cable TV"></div>
+                                                    <h6>Cable TV</h6>
+                                                </div>
+                                            <?php } ?>
+                                            <?php if ($room['FreeDrink']) { ?>
+                                                <div class="room__details__more__facilities__item">
+                                                    <div class="icon"><img src="img/rooms/details/facilities/fac-3.png" alt="Free Drinks"></div>
+                                                    <h6>Free Drinks</h6>
+                                                </div>
+                                            <?php } ?>
+                                            <?php if ($room['Wifi']) { ?>
+                                                <div class="room__details__more__facilities__item">
+                                                    <div class="icon"><img src="img/rooms/details/facilities/fac-4.png" alt="Unlimited Wifi"></div>
+                                                    <h6>Unlimited Wifi</h6>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="room__details__more__facilities__item">
+                                                <div class="icon"><img src="img/rooms/details/facilities/fac-5.png" alt="Restaurant quality"></div>
+                                                <h6>Restaurant quality</h6>
+                                            </div>
+                                            <div class="room__details__more__facilities__item">
+                                                <div class="icon"><img src="img/rooms/details/facilities/fac-6.png" alt="Service 24/24"></div>
+                                                <h6>Service 24/24</h6>
+                                            </div>
+                                            <div class="room__details__more__facilities__item">
+                                                <div class="icon"><img src="img/rooms/details/facilities/fac-7.png" alt="Gym Centre"></div>
+                                                <h6>Gym Centre</h6>
+                                            </div>
+                                            <div class="room__details__more__facilities__item">
+                                                <div class="icon"><img src="img/rooms/details/facilities/fac-8.png" alt="Spa & Wellness"></div>
+                                                <h6>Spa & Wellness</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- Rooms Details Section End -->
 
@@ -274,8 +285,8 @@ if ($room_id > 0) {
     <!-- Footer Section Begin -->
     <?php
 
-include './links/footer.php';
-?>
+    include './links/footer.php';
+    ?>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

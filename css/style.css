@@ -1729,6 +1729,13 @@ ol {
 	position: relative;
 	margin-bottom: 70px;
 }
+.room__details__title span{
+	font-size: 48px;
+	color: #E9AD28;
+	position: relative;
+	padding-left: 12px;
+	margin-bottom: 20px;
+}
 
 .room__details__title h2 {
 	font-size: 48px;
@@ -3050,6 +3057,9 @@ ol {
 	.room__details__title h2 {
 		margin-bottom: 20px;
 	}
+	.room__details__title h3 {
+		margin-top: 20px;
+	}
 	.room__details__facilities {
 		margin-bottom: 30px;
 	}
@@ -3367,4 +3377,15 @@ ol {
 		float: none;
 		margin-bottom: 15px;
 	}
+}
+
+
+
+.text-center button{
+	display: inline-block;
+	font-size: 16px;
+	color: #1d1c1c;
+	letter-spacing: 2px;
+	background: #E9AD28;
+	padding: 13px 20px 11px;
 }
