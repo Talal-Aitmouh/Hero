@@ -49,9 +49,7 @@ if ($room_id > 0) {
             <a href="./index.html"><img src="img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__btn__widget">
-            <a href="#">Book Now <span class="arrow_right"></span></a>
-        </div>
+
         <div class="offcanvas__widget">
             <ul>
                 <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
@@ -127,9 +125,7 @@ if ($room_id > 0) {
                                     <li><a href="./contact.php">Contact</a></li>
                                 </ul>
                             </nav>
-                            <div class="header__nav__widget">
-                                <a href="#">Book Now <span class="arrow_right"></span></a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -187,14 +183,15 @@ if ($room_id > 0) {
                         </div>
                         <div class="room__details__title">
                             <h2><?php echo $room['RoomName']; ?></h2>
-                            <h3 class="ml-5 mt-3" >$ <span><?php echo $room['Price']; ?></span>  /day</h3>
-                            <a href="#" class="primary-btn">Booking Now</a>
+                            <h3 class="ml-5 mt-3">$ <span><?php echo $room['Price']; ?></span> /day</h3>
+                            <a href="booking.php?room_id=<?php echo $room['RoomID']; ?>" class="primary-btn">Booking Now</a>
                         </div>
-                        
+
                         <div class="room__details__desc">
                             <h2>Description:</h2>
                             <p><?php echo $room['Description']; ?></p>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="room__details__facilities">

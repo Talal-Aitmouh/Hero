@@ -102,87 +102,78 @@
         </div>
     </header>
 
-    <div class="container mt-5 mb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h2>Booking</h2>
-                    </div>
-                    <div class="card-body">
-                        <form action="#">
-                            <div class="row pb-3 mb-5 border-bottom">
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Checkin Date</label>
-                                    <input type="date" id="checkin" name="checkin" class="form-control">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Checkout Date</label>
-                                    <input type="date" id="checkin" name="checkin" class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="">Number of guest</label>
-                                    <input type="number" id="checkin" name="checkin" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="fullName" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="Enter your name" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="username" class="form-label">Nationality</label>
-                                    <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Enter your number" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="password" class="form-label">Passport Number / CIN</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="confirmPassword" class="form-label">Date of Birth</label>
-                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="confirmPassword" class="form-label">Adress</label>
-                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="">Service?</label>
-                                    <select class="form-select" id="service" name="service">
-                                        <option value="">Picine</option>
-                                        <option value="">Dinner</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Gender</label>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="gender" id="male" required>
-                                    <label for="male" class="form-check-label">Male</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="gender" id="female" required>
-                                    <label for="female" class="form-check-label">Female</label>
-                                </div>
-
-                            </div>
-
-                            <div class="text-center  ">
-                                <button type="submit">Book Now</button>
-                            </div>
-                        </form>
-                    </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Booking Form</h2>
+        <form action="./traitement/booking.php" method="POST">
+            <input type="hidden" name="room_id" value="<?php echo $_GET['room_id']; ?>">
+            <div class="row g-3">
+                <!-- Check-In Date -->
+                <div class="col-md-6">
+                    <label for="checkinDate" class="form-label">Check-In Date</label>
+                    <input type="date" class="form-control" id="checkinDate" name="checkin_date" required>
+                </div>
+                <!-- Check-Out Date -->
+                <div class="col-md-6">
+                    <label for="checkoutDate" class="form-label">Check-Out Date</label>
+                    <input type="date" class="form-control" id="checkoutDate" name="checkout_date" required>
+                </div>
+                <!-- Number of Guests -->
+                <div class="col-md-6">
+                    <label for="numberOfGuests" class="form-label">Number of Guests</label>
+                    <input type="number" class="form-control" id="numberOfGuests" name="number_of_guests" min="1" required>
+                </div>
+                <!-- Full Name -->
+                <div class="col-md-6">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" name="full_name" required>
+                </div>
+                <!-- Nationality -->
+                <div class="col-md-6">
+                    <label for="nationality" class="form-label">Nationality</label>
+                    <input type="text" class="form-control" id="nationality" name="nationality" required>
+                </div>
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <!-- Phone Number -->
+                <div class="col-md-6">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phone_number" required>
+                </div>
+                <!-- Passport Number / CIN -->
+                <div class="col-md-6">
+                    <label for="passportNumber" class="form-label">Passport Number / CIN</label>
+                    <input type="text" class="form-control" id="passportNumber" name="passport_number" required>
+                </div>
+                <!-- Date of Birth -->
+                <div class="col-md-6">
+                    <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" name="date_of_birth" required>
+                </div>
+                <!-- Address -->
+                <div class="col-md-6">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+                <!-- Service Selection -->
+                
+                <!-- Gender Selection -->
+                <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" name="gender" required>
+                        <option selected disabled>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
             </div>
-        </div>
+            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                <button type="submit" class="btn btn-primary">Submit Booking</button>
+            </div>
+        </form>
     </div>
 
 
@@ -203,6 +194,8 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
