@@ -49,7 +49,7 @@
                                 </ul>
                             </nav>
                             <div class="header__nav__widget">
-                                <a href="#">Book Now <span class="arrow_right"></span></a>
+                                <a href="rooms.php">Book Now <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
