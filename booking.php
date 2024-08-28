@@ -3,6 +3,7 @@
 
 <head>
     <?php include './links/head.php'; ?>
+
 </head>
 
 <body>
@@ -160,7 +161,7 @@
                 <!-- Service Selection -->
                 
                 <!-- Gender Selection -->
-                <div class="col-md-6">
+                <div class="col-md-6 mt-4">
                     <label for="gender" class="form-label">Gender</label>
                     <select class="form-select" id="gender" name="gender" required>
                         <option selected disabled>Select Gender</option>
@@ -171,7 +172,7 @@
                 </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto mt-4">
-                <button type="submit" class="btn btn-primary">Submit Booking</button>
+                <button type="submit" class="primary-btn">Submit Booking</button>
             </div>
         </form>
     </div>
@@ -194,7 +195,8 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.7/umd/popper.min.js" integrity="sha384-oBqDVmMz0kHpzTcrCw3rKK3LfCET8pFw7jScopXBk/HmHdN+ZxBYfBYcpZR7o2l6" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9jD6gSA/Y7fF/yL4sE9RbOGtXABabJMRUibXmJNMEu6/6IYkYVQVskg" crossorigin="anonymous"></script>
 
 </body>
 

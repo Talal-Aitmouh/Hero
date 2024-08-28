@@ -220,7 +220,7 @@ if ($room_id > 0) {
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="room__details__more__facilities">
-                                    <h2>Most popular facilities:</h2>
+                                    <h2>Room facilities:</h2>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <?php if ($room['Climatiseur']) { ?>
@@ -248,24 +248,7 @@ if ($room_id > 0) {
                                                 </div>
                                             <?php } ?>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="room__details__more__facilities__item">
-                                                <div class="icon"><img src="img/rooms/details/facilities/fac-5.png" alt="Restaurant quality"></div>
-                                                <h6>Restaurant quality</h6>
-                                            </div>
-                                            <div class="room__details__more__facilities__item">
-                                                <div class="icon"><img src="img/rooms/details/facilities/fac-6.png" alt="Service 24/24"></div>
-                                                <h6>Service 24/24</h6>
-                                            </div>
-                                            <div class="room__details__more__facilities__item">
-                                                <div class="icon"><img src="img/rooms/details/facilities/fac-7.png" alt="Gym Centre"></div>
-                                                <h6>Gym Centre</h6>
-                                            </div>
-                                            <div class="room__details__more__facilities__item">
-                                                <div class="icon"><img src="img/rooms/details/facilities/fac-8.png" alt="Spa & Wellness"></div>
-                                                <h6>Spa & Wellness</h6>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

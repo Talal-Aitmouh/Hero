@@ -182,17 +182,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     // Delete booking information
     $bookingID = $_POST['bookingID'];
-    $sqlbooking = "DELETE FROM booking WHERE BookingID = ? ";
-    $stmt = $conn->prepare($sqlbooking);
-    $stmt->bind_param("i", $bookingID);
 
-    if ($stmt->execute()) {
+    // Start a transaction
+    $conn->begin_transaction();
+
+    try {
+        // Retrieve the GuestID associated with the booking
+        $sqlGuestID = "SELECT GuestID FROM booking WHERE BookingID = ?";
+        $stmtGuestID = $conn->prepare($sqlGuestID);
+        $stmtGuestID->bind_param("i", $bookingID);
+        $stmtGuestID->execute();
+        $stmtGuestID->bind_result($guestID);
+        $stmtGuestID->fetch();
+        $stmtGuestID->close();
+
+        // Delete related records from the `transactions` table
+        $sqlTransactions = "DELETE FROM transactions WHERE BillingID IN (SELECT BillingID FROM billing WHERE BookingID = ?)";
+        $stmtTransactions = $conn->prepare($sqlTransactions);
+        $stmtTransactions->bind_param("i", $bookingID);
+        $stmtTransactions->execute();
+        $stmtTransactions->close();
+
+        // Delete related records from the `billing` table
+        $sqlBilling = "DELETE FROM billing WHERE BookingID = ?";
+        $stmtBilling = $conn->prepare($sqlBilling);
+        $stmtBilling->bind_param("i", $bookingID);
+        $stmtBilling->execute();
+        $stmtBilling->close();
+
+        // Delete related records from the `feedback` table
+        $sqlFeedback = "DELETE FROM feedback WHERE BookingID = ?";
+        $stmtFeedback = $conn->prepare($sqlFeedback);
+        $stmtFeedback->bind_param("i", $bookingID);
+        $stmtFeedback->execute();
+        $stmtFeedback->close();
+
+        // Finally, delete the booking record from the `booking` table
+        $sqlBooking = "DELETE FROM booking WHERE BookingID = ?";
+        $stmtBooking = $conn->prepare($sqlBooking);
+        $stmtBooking->bind_param("i", $bookingID);
+        $stmtBooking->execute();
+        $stmtBooking->close();
+
+        // Delete the guest record from the `guests` table
+        $sqlGuest = "DELETE FROM guests WHERE GuestID = ?";
+        $stmtGuest = $conn->prepare($sqlGuest);
+        $stmtGuest->bind_param("i", $guestID);
+        $stmtGuest->execute();
+        $stmtGuest->close();
+
+        // Commit the transaction
+        $conn->commit();
+
         header('Location: ../booking.php');
         exit();
-    } else {
-        echo "Error deleting record: " . $stmt->error;
+    } catch (Exception $e) {
+        // An error occurred, rollback the transaction
+        $conn->rollback();
+        echo "Error deleting records: " . $e->getMessage();
     }
-    $stmt->close();
 }
+
+
 
 $conn->close();
