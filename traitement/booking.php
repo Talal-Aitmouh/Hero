@@ -48,17 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $totalAmount = $roomPrice * $days;
 
     // Insert Guest
-    $sql = "INSERT INTO guests (FullName, Email, Phone, Address, Nationality, PassportNumber, DateOfBirth, Gender) 
+    $sql = "INSERT INTO guests (FullName, Email, Phone, Address, Nationality, PassportNumber, DateOfBirth, Gender, CheckInDate, CheckOutDate) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssss", $fullName, $email, $phone, $address, $nationality, $passportNumber, $dateOfBirth, $gender);
+    $stmt->bind_param("ssssssss", $fullName, $email, $phone, $address, $nationality, $passportNumber, $dateOfBirth, $gender, $checkInDate, $checkOutDate);
     $stmt->execute();
     $guestID = $stmt->insert_id;
     $stmt->close();
 
     // Insert Booking
-    $sql = "INSERT INTO booking (GuestID, RoomID, BookingDate, CheckInDate, CheckOutDate, TotalAmount) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO booking (GuestID, RoomID, BookingDate, CheckInDate, CheckOutDate, Status , TotalAmount) 
+            VALUES (?, ?, ?, ?, ?, Booked, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("iisssd", $guestID, $roomID, $bookingDate, $checkInDate, $checkOutDate, $totalAmount);
     $stmt->execute();
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert Billing
     $sql = "INSERT INTO billing (GuestID, BookingID, Amount, BillingDate, PaymentStatus) 
-            VALUES (?, ?, ?, ?, 'Pending')";
+            VALUES (?, ?, ?, ?, 'Paid')";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("iids", $guestID, $bookingID, $totalAmount, $bookingDate);
     $stmt->execute();
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert Transaction
     $sql = "INSERT INTO transactions (BillingID, TransactionDate, Amount, PaymentMethod, TransactionStatus) 
-            VALUES (?, ?, ?, ?, 'Completed')";
+            VALUES (?, ?, ?, ?, 'Paid')";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("isds", $billingID, $bookingDate, $totalAmount, $paymentMethod);
     $stmt->execute();
