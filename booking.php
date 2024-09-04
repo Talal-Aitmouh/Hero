@@ -104,78 +104,96 @@
     </header>
 
     <div class="container my-5">
-        <h2 class="text-center mb-4">Booking Form</h2>
+        <h3 class="text-center mb-4">Complete Your Booking</h3>
         <form action="./traitement/booking.php" method="POST">
-            <input type="hidden" name="room_id" value="<?php echo $_GET['room_id']; ?>">
+            <!-- Hidden Field for Room ID -->
+            <input type="hidden" name="room_id" value="<?php echo htmlspecialchars($_GET['room_id']); ?>">
+
+            <!-- Guest Information -->
+            <h5>Guest Information</h5>
             <div class="row g-3">
-                <!-- Check-In Date -->
-                <div class="col-md-6">
-                    <label for="checkinDate" class="form-label">Check-In Date</label>
-                    <input type="date" class="form-control" id="checkinDate" name="checkin_date" required>
-                </div>
-                <!-- Check-Out Date -->
-                <div class="col-md-6">
-                    <label for="checkoutDate" class="form-label">Check-Out Date</label>
-                    <input type="date" class="form-control" id="checkoutDate" name="checkout_date" required>
-                </div>
-                <!-- Number of Guests -->
-                <div class="col-md-6">
-                    <label for="numberOfGuests" class="form-label">Number of Guests</label>
-                    <input type="number" class="form-control" id="numberOfGuests" name="number_of_guests" min="1" required>
-                </div>
-                <!-- Full Name -->
                 <div class="col-md-6">
                     <label for="fullName" class="form-label">Full Name</label>
                     <input type="text" class="form-control" id="fullName" name="full_name" required>
                 </div>
-                <!-- Nationality -->
-                <div class="col-md-6">
-                    <label for="nationality" class="form-label">Nationality</label>
-                    <input type="text" class="form-control" id="nationality" name="nationality" required>
-                </div>
-                <!-- Email -->
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-                <!-- Phone Number -->
                 <div class="col-md-6">
-                    <label for="phoneNumber" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="phoneNumber" name="phone_number" required>
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone_number" required>
                 </div>
-                <!-- Passport Number / CIN -->
-                <div class="col-md-6">
-                    <label for="passportNumber" class="form-label">Passport Number / CIN</label>
-                    <input type="text" class="form-control" id="passportNumber" name="passport_number" required>
-                </div>
-                <!-- Date of Birth -->
-                <div class="col-md-6">
-                    <label for="dateOfBirth" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="dateOfBirth" name="date_of_birth" required>
-                </div>
-                <!-- Address -->
                 <div class="col-md-6">
                     <label for="address" class="form-label">Address</label>
                     <input type="text" class="form-control" id="address" name="address" required>
                 </div>
-                <!-- Service Selection -->
-                
-                <!-- Gender Selection -->
-                <div class="col-md-6 mt-4">
+                <div class="col-md-6">
+                    <label for="nationality" class="form-label">Nationality</label>
+                    <input type="text" class="form-control" id="nationality" name="nationality" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="passportNumber" class="form-label">Passport Number</label>
+                    <input type="text" class="form-control" id="passportNumber" name="passport_number" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" name="date_of_birth" required>
+                </div>
+                <div class="col-md-6">
                     <label for="gender" class="form-label">Gender</label>
                     <select class="form-select" id="gender" name="gender" required>
                         <option selected disabled>Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <hr class="my-4">
+
+            <!-- Booking Information -->
+            <h5>Booking Information</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="checkinDate" class="form-label">Check-In Date</label>
+                    <input type="date" class="form-control" id="checkinDate" name="checkin_date" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="checkoutDate" class="form-label">Check-Out Date</label>
+                    <input type="date" class="form-control" id="checkoutDate" name="checkout_date" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="numberOfGuests" class="form-label">Number of Guests</label>
+                    <input type="number" class="form-control" id="numberOfGuests" name="number_of_guests" required>
+                </div>
+            </div>
+            <hr class="my-4">
+
+            <!-- Payment Information -->
+            <h5>Payment Information</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="totalAmount" class="form-label">Total Amount</label>
+                    <input type="text" class="form-control" id="totalAmount" name="total_amount" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="paymentMethod" class="form-label">Payment Method</label>
+                    <select class="form-select" id="paymentMethod" name="payment_method" required>
+                        <option selected disabled>Select Payment Method</option>
+                        <option value="credit_card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bank_transfer">Bank Transfer</option>
                     </select>
                 </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto mt-4">
-                <button type="submit" class="primary-btn">Submit Booking</button>
+                <button type="submit" class="primary-btn">Complete Booking</button>
             </div>
         </form>
     </div>
+
+
 
 
 
@@ -196,7 +214,13 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.7/umd/popper.min.js" integrity="sha384-oBqDVmMz0kHpzTcrCw3rKK3LfCET8pFw7jScopXBk/HmHdN+ZxBYfBYcpZR7o2l6" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9jD6gSA/Y7fF/yL4sE9RbOGtXABabJMRUibXmJNMEu6/6IYkYVQVskg" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9jD6gSA/Y7fF/yL4sE9RbOGtXABabJMRUibXmJNMEu6/6IYkYVQVskg" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("nextBtn").addEventListener("click", function() {
+            document.getElementById("paymentSection").style.display = "block";
+            this.style.display = "none";
+        });
+    </script>
 
 </body>
 

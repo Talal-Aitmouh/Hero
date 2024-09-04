@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero__text">
-                        <h5>WELCOME HIROTO</h5>
+                        <h5>WELCOME HERO</h5>
                         <h2>Experience the greatest for you holidays.</h2>
                     </div>
                     <form action="#" class="filter__form">

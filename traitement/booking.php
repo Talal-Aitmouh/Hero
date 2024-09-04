@@ -1,72 +1,87 @@
 <?php
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "Heroku";
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve form data
-$fullName = $_POST['full_name'];
-$email = $_POST['email'];
-$phone = $_POST['phone_number'];
-$address = $_POST['address'];
-$nationality = $_POST['nationality'];
-$passportNumber = $_POST['passport_number'];
-$dateOfBirth = $_POST['date_of_birth'];
-$gender = $_POST['gender'];
-$checkInDate = $_POST['checkin_date'];
-$checkOutDate = $_POST['checkout_date'];
-$numberOfGuests = $_POST['number_of_guests'];
-$roomID = $_POST['room_id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve form data
+    $roomID = $_POST['room_id']; // Retrieved from hidden input
+    $fullName = $_POST['full_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone_number'];
+    $address = $_POST['address'];
+    $nationality = $_POST['nationality'];
+    $passportNumber = $_POST['passport_number'];
+    $dateOfBirth = $_POST['date_of_birth'];
+    $gender = $_POST['gender'];
+    $checkInDate = $_POST['checkin_date'];
+    $checkOutDate = $_POST['checkout_date'];
+    $bookingDate = date('Y-m-d');
+    $numberOfGuests = $_POST['number_of_guests'];
+    $paymentMethod = $_POST['payment_method'];
 
-// Insert guest information into the guests table
-$guestInsertSQL = "INSERT INTO guests (FullName, Email, Phone, Address, Nationality, PassportNumber, DateOfBirth, Gender, CHECKINDATE, CHECKOUTDATE)
-                   VALUES ('$fullName', '$email', '$phone', '$address', '$nationality', '$passportNumber', '$dateOfBirth', '$gender', '$checkInDate', '$checkOutDate')";
-
-if ($conn->query($guestInsertSQL) === TRUE) {
-    $guestID = $conn->insert_id; // Get the last inserted GuestID
-
-    // Insert booking information into the booking table
-    $bookingDate = date('Y-m-d'); // Current date
-    $status = "Pending"; // Default status
-    $totalAmount = calculateTotalAmount($roomID, $checkInDate, $checkOutDate, $conn); // Function to calculate total amount
-
-    $bookingInsertSQL = "INSERT INTO booking (GuestID, RoomID, BookingDate, CheckInDate, CheckOutDate, Status, TotalAmount)
-                         VALUES ('$guestID', '$roomID', '$bookingDate', '$checkInDate', '$checkOutDate', '$status', '$totalAmount')";
-
-    if ($conn->query($bookingInsertSQL) === TRUE) {
-        echo "Booking created successfully!";
-    } else {
-        echo "Error: " . $bookingInsertSQL . "<br>" . $conn->error;
-    }
-
-} else {
-    echo "Error: " . $guestInsertSQL . "<br>" . $conn->error;
-}
-
-$conn->close();
-
-// Function to calculate the total amount
-function calculateTotalAmount($roomID, $checkInDate, $checkOutDate, $conn) {
     // Calculate the number of days
-    $checkIn = new DateTime($checkInDate);
-    $checkOut = new DateTime($checkOutDate);
-    $interval = $checkIn->diff($checkOut);
+    $date1 = new DateTime($checkInDate);
+    $date2 = new DateTime($checkOutDate);
+    $interval = $date1->diff($date2);
     $days = $interval->days;
 
-    // Fetch the room price
-    $roomPriceSQL = "SELECT Price FROM rooms WHERE RoomID = '$roomID'";
-    $roomResult = $conn->query($roomPriceSQL);
-    $roomPrice = $roomResult->fetch_assoc()['Price'];
-
+    // Fetch room price
+    $sql = "SELECT Price FROM rooms WHERE RoomID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $roomID);
+    $stmt->execute();
+    $stmt->bind_result($roomPrice);
+    $stmt->fetch();
+    $stmt->close();
+    
     // Calculate total amount
-    $totalAmount = ($roomPrice * $days);
-    return $totalAmount;
+    $totalAmount = $roomPrice * $days;
+
+    // Insert Guest
+    $sql = "INSERT INTO guests (FullName, Email, Phone, Address, Nationality, PassportNumber, DateOfBirth, Gender) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssss", $fullName, $email, $phone, $address, $nationality, $passportNumber, $dateOfBirth, $gender);
+    $stmt->execute();
+    $guestID = $stmt->insert_id;
+    $stmt->close();
+
+    // Insert Booking
+    $sql = "INSERT INTO booking (GuestID, RoomID, BookingDate, CheckInDate, CheckOutDate, TotalAmount) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iisssd", $guestID, $roomID, $bookingDate, $checkInDate, $checkOutDate, $totalAmount);
+    $stmt->execute();
+    $bookingID = $stmt->insert_id;
+    $stmt->close();
+
+    // Insert Billing
+    $sql = "INSERT INTO billing (GuestID, BookingID, Amount, BillingDate, PaymentStatus) 
+            VALUES (?, ?, ?, ?, 'Pending')";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iids", $guestID, $bookingID, $totalAmount, $bookingDate);
+    $stmt->execute();
+    $billingID = $stmt->insert_id;
+    $stmt->close();
+
+    // Insert Transaction
+    $sql = "INSERT INTO transactions (BillingID, TransactionDate, Amount, PaymentMethod, TransactionStatus) 
+            VALUES (?, ?, ?, ?, 'Completed')";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("isds", $billingID, $bookingDate, $totalAmount, $paymentMethod);
+    $stmt->execute();
+    $stmt->close();
+
+    echo "Booking and payment completed successfully.";
 }
 ?>
