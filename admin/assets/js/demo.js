@@ -360,7 +360,7 @@ var legendItems = myLegendContainer.getElementsByTagName('li');
 for (var i = 0; i < legendItems.length; i += 1) {
 	legendItems[i].addEventListener("click", legendClickCallback, false);
 }
-
+/*
 var dailySalesChart = document.getElementById('dailySalesChart').getContext('2d');
 
 var myDailySalesChart = new Chart(dailySalesChart, {
@@ -415,3 +415,4 @@ $("#activeUsersChart").sparkline([112,109,120,107,110,85,87,90,102,109,120,99,11
 	barSpacing: 10,
 	barColor: 'rgba(255,255,255,.3)'
 });
+*/

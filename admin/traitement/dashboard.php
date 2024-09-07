@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../config/db.php';
 
 // Fetch total amount from billing
@@ -51,5 +51,39 @@ if ($resultr->num_rows > 0) {
     $total_rating = $total_feedbacks = $average_rating = 0;
 }
 
+
+
+// Fetch data by day and total amount from the database
+$sql = "SELECT DAY(BookingDate) AS day, COUNT(*) AS bookings, SUM(TotalAmount) AS total_amount
+        FROM booking
+        WHERE YEAR(BookingDate) = YEAR(CURDATE()) 
+        AND MONTH(BookingDate) = MONTH(CURDATE())
+        GROUP BY DAY(BookingDate)
+        ORDER BY DAY(BookingDate)";
+
+$result = $conn->query($sql);
+
+$days = [];
+$bookings = [];
+$amounts = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $days[] = $row['day'];           // Get day number
+        $bookings[] = $row['bookings'];  // Get booking count
+        $amounts[] = $row['total_amount']; // Get total amount for the day
+    }
+} else {
+    // If no results, provide default empty arrays
+    $days = json_encode([]);
+    $bookings = json_encode([]);
+    $amounts = json_encode([]);
+}
+
+// Close the connection
 $conn->close();
-?>
+
+// Convert PHP arrays to JSON
+$days = json_encode($days);
+$bookings = json_encode($bookings);
+$amounts = json_encode($amounts);
