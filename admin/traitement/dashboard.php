@@ -96,3 +96,27 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 $roomNames_json = json_encode($roomNames);
 $quantities_json = json_encode($quantities);
+
+
+$query = "SELECT MONTH(CHECKINDATE) AS MonthNumber, COUNT(*) AS GuestCount
+          FROM guests
+          WHERE YEAR(CHECKINDATE) = YEAR(CURDATE())
+          GROUP BY MONTH(CHECKINDATE)
+          ORDER BY MonthNumber";
+$result = mysqli_query($conn, $query);
+
+$monthlyGuests = array_fill(1, 12, 0);  // Initialize all months with 0
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $monthlyGuests[$row['MonthNumber']] = $row['GuestCount'];
+}
+
+$monthlyGuests_json = json_encode(array_values($monthlyGuests));
+
+
+
+$query = "SELECT COUNT(*) AS TotalGuests FROM guests";
+$result = mysqli_query($conn, $query);
+
+$row = mysqli_fetch_assoc($result);
+$totalGuests = $row['TotalGuests'];

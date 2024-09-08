@@ -36,14 +36,18 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <canvas id="dailySalesChart"></canvas></script>
   <script>
-    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-      type: "line",
-      height: "70",
-      width: "100%",
-      lineWidth: "2",
-      lineColor: "#177dff",
-      fillColor: "rgba(23, 125, 255, 0.14)",
+    $(document).ready(function() {
+    var monthlyGuests = <?php echo $monthlyGuests_json; ?>;
+
+    $("#lineChart").sparkline(monthlyGuests, {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
     });
+});
 
     $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
       type: "line",
