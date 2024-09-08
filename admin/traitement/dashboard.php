@@ -87,3 +87,5 @@ $conn->close();
 $days = json_encode($days);
 $bookings = json_encode($bookings);
 $amounts = json_encode($amounts);
+
+
