@@ -156,7 +156,7 @@ include './traitement/dashboard.php';
               <div class="card card-primary card-round">
                 <div class="card-header">
                   <div class="card-head-row">
-                    <div class="card-title">Service Amount</div>
+                    <div class="card-title">Total Rooms</div>
                     <div class="card-tools">
                       <div class="dropdown">
                         <button class="btn btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -170,11 +170,11 @@ include './traitement/dashboard.php';
                       </div>
                     </div>
                   </div>
-                  <div class="card-category">March 25 - April 02</div>
+                  
                 </div>
                 <div class="card-body pb-0">
                   <div class="mb-4 mt-2">
-                    <h1>$<?php echo $total_service_amount; ?></h1>
+                    <h1><?php echo $totalRooms; ?> rooms</h1>
                   </div>
                   <div class="pull-in">
                     <canvas id="dailySalesChart"></canvas>
@@ -294,7 +294,7 @@ var myLineChart = new Chart(lineChart, {
     data: {
         labels: <?php echo $labels_json; ?>,
         datasets: [{
-            label: "Total Booking Amount",
+            label: "Total Booking Amount monthly",
             borderColor: "#1d7af3",
             pointBorderColor: "#FFF",
             pointBackgroundColor: "#1d7af3",
@@ -305,7 +305,7 @@ var myLineChart = new Chart(lineChart, {
             backgroundColor: "transparent",
             fill: true,
             borderWidth: 2,
-            data: <?php echo $data_json; ?>,
+            data:  <?php echo $data_json; ?>,
         }]
     },
     options : {
@@ -337,6 +337,63 @@ var myLineChart = new Chart(lineChart, {
 	}
 });
 </script>
+<script>
+var pieChart = document.getElementById('dailySalesChart').getContext('2d');
+
+// Generate a random color for each room
+function getRandomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+var roomNames = <?php echo $roomNames_json; ?>;
+var roomQuantities = <?php echo $quantities_json; ?>;
+
+// Generate a color for each room
+var roomColors = roomNames.map(() => getRandomColor());
+
+var myPieChart = new Chart(pieChart, {
+    type: "pie",
+    data: {
+        datasets: [
+            {
+                data: roomQuantities,
+                backgroundColor: roomColors,
+                borderWidth: 0,
+            },
+        ],
+        labels: roomNames,
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            position: "bottom",
+            labels: {
+                fontColor: "rgb(154, 154, 154)",
+                fontSize: 11,
+                usePointStyle: true,
+                padding: 20,
+            },
+        },
+        pieceLabel: {
+            render: "percentage",
+            fontColor: "white",
+            fontSize: 14,
+        },
+        tooltips: false,
+        layout: {
+            padding: {
+                left: 20,
+                right: 20,
+                top: 20,
+                bottom: 20,
+            },
+        },
+    },
+});
+</script>
+
+
 </body>
 
 </html>

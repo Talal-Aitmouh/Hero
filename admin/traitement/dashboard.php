@@ -33,10 +33,11 @@ $sqlTransactions = "SELECT t.TransactionID, t.Amount, t.TransactionDate, t.Payme
 $resultTransactions = $conn->query($sqlTransactions);
 
 // Fetch total service amount
-$sqlTotalServiceAmount = "SELECT SUM(Price) as total_service_amount FROM service";
-$resultTotalServiceAmount = $conn->query($sqlTotalServiceAmount);
-$rowTotalServiceAmount = $resultTotalServiceAmount->fetch_assoc();
-$total_service_amount = number_format($rowTotalServiceAmount['total_service_amount'], 2);
+$query = "SELECT SUM(Quantity) AS TotalRooms FROM rooms";
+$result = mysqli_query($conn, $query);
+
+$row = mysqli_fetch_assoc($result);
+$totalRooms = $row['TotalRooms'];
 
 // Fetch feedback ratings
 $sqlr = "SELECT SUM(Rating) as total_rating, COUNT(*) as total_feedbacks FROM feedback";
@@ -79,3 +80,19 @@ $data = array_values($months); // [542, null, 430, ..., 900]
 // Convert data arrays to JSON format for use in JavaScript
 $labels_json = json_encode($labels);
 $data_json = json_encode($data);
+
+
+
+$query = "SELECT RoomName, Quantity FROM rooms";
+$result = mysqli_query($conn, $query);
+
+$roomNames = [];
+$quantities = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $roomNames[] = $row['RoomName'];
+    $quantities[] = $row['Quantity'];
+}
+
+$roomNames_json = json_encode($roomNames);
+$quantities_json = json_encode($quantities);
