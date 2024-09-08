@@ -285,6 +285,58 @@ include './traitement/dashboard.php';
   <?php include './links/script.php' ?>
  
 
+  <script>
+// JavaScript code to initialize Chart.js with fetched data
+var lineChart = document.getElementById('statisticsChart').getContext('2d');
+
+var myLineChart = new Chart(lineChart, {
+    type: "line",
+    data: {
+        labels: <?php echo $labels_json; ?>,
+        datasets: [{
+            label: "Total Booking Amount",
+            borderColor: "#1d7af3",
+            pointBorderColor: "#FFF",
+            pointBackgroundColor: "#1d7af3",
+            pointBorderWidth: 2,
+            pointHoverRadius: 4,
+            pointHoverBorderWidth: 1,
+            pointRadius: 4,
+            backgroundColor: "transparent",
+            fill: true,
+            borderWidth: 2,
+            data: <?php echo $data_json; ?>,
+        }]
+    },
+    options : {
+		maintainAspectRatio:!1, legend: {
+			display: !1
+		}
+		, animation: {
+			easing: "easeInOutBack"
+		}
+		, scales: {
+			yAxes:[ {
+				display:!1, ticks: {
+					fontColor: "rgba(0,0,0,0.5)", fontStyle: "bold", beginAtZero: !0, maxTicksLimit: 10, padding: 0
+				}
+				, gridLines: {
+					drawTicks: !1, display: !1
+				}
+			}
+			], xAxes:[ {
+				display:!1, gridLines: {
+					zeroLineColor: "transparent"
+				}
+				, ticks: {
+					padding: -20, fontColor: "rgba(255,255,255,0.2)", fontStyle: "bold"
+				}
+			}
+			]
+		}
+	}
+});
+</script>
 </body>
 
 </html>

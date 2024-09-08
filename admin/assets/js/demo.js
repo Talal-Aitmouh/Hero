@@ -254,7 +254,7 @@ var world_map = new jsVectorMap({
 });
 
 //Chart
-
+/*
 var ctx = document.getElementById('statisticsChart').getContext('2d');
 
 var statisticsChart = new Chart(ctx, {
@@ -349,6 +349,7 @@ var statisticsChart = new Chart(ctx, {
 		}  
 	}
 });
+*/
 
 var myLegendContainer = document.getElementById("myChartLegend");
 

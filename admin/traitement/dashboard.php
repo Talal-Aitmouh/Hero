@@ -51,41 +51,31 @@ if ($resultr->num_rows > 0) {
     $total_rating = $total_feedbacks = $average_rating = 0;
 }
 
+$query = "SELECT MONTH(BookingDate) AS MonthNumber, SUM(TotalAmount) AS Amount
+          FROM booking
+          WHERE YEAR(BookingDate) = YEAR(CURDATE())
+          GROUP BY MONTH(BookingDate)";
 
 
-// Fetch data by day and total amount from the database
-$sql = "SELECT DAY(BookingDate) AS day, COUNT(*) AS bookings, SUM(TotalAmount) AS total_amount
-        FROM booking
-        WHERE YEAR(BookingDate) = YEAR(CURDATE()) 
-        AND MONTH(BookingDate) = MONTH(CURDATE())
-        GROUP BY DAY(BookingDate)
-        ORDER BY DAY(BookingDate)";
+$result = mysqli_query($conn, $query);
 
-$result = $conn->query($sql);
+// Initialize an associative array for all months with null values
+$months = [
+    "Jan" => null, "Feb" => null, "Mar" => null, "Apr" => null,
+    "May" => null, "Jun" => null, "Jul" => null, "Aug" => null,
+    "Sep" => null, "Oct" => null, "Nov" => null, "Dec" => null
+];
 
-$days = [];
-$bookings = [];
-$amounts = [];
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $days[] = $row['day'];           // Get day number
-        $bookings[] = $row['bookings'];  // Get booking count
-        $amounts[] = $row['total_amount']; // Get total amount for the day
-    }
-} else {
-    // If no results, provide default empty arrays
-    $days = json_encode([]);
-    $bookings = json_encode([]);
-    $amounts = json_encode([]);
+// Populate the $months array with the actual data from the query
+while ($row = mysqli_fetch_assoc($result)) {
+    $monthIndex = date('M', mktime(0, 0, 0, $row['MonthNumber'], 10)); // Convert month number to month name (e.g., 1 -> Jan)
+    $months[$monthIndex] = $row['Amount'];
 }
 
-// Close the connection
-$conn->close();
+// Convert the $months associative array to a simple array for Chart.js
+$labels = array_keys($months); // ["Jan", "Feb", "Mar", ..., "Dec"]
+$data = array_values($months); // [542, null, 430, ..., 900]
 
-// Convert PHP arrays to JSON
-$days = json_encode($days);
-$bookings = json_encode($bookings);
-$amounts = json_encode($amounts);
-
-
+// Convert data arrays to JSON format for use in JavaScript
+$labels_json = json_encode($labels);
+$data_json = json_encode($data);
