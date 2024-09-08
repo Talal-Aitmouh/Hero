@@ -250,152 +250,15 @@ include './traitement/dashboard.php';
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="container-fluid d-flex justify-content-between">
-        <nav class="pull-left">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="http://www.themekita.com">
-                ThemeKita
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"> Help </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"> Licenses </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright">
-          2024, made with <i class="fa fa-heart heart text-danger"></i> by
-          <a href="http://www.themekita.com">ThemeKita</a>
-        </div>
-        <div>
-          Distributed by
-          <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
-        </div>
-      </div>
-    </footer>
+    
   </div>
 
   </div>
-  <!--   Core JS Files   -->
+ 
   <?php include './links/script.php' ?>
 
 
-  <script>
-    var lineChart = document.getElementById('statisticsChart').getContext('2d');
 
-    var myLineChart = new Chart(lineChart, {
-      type: "line",
-      data: {
-        labels: <?php echo $labels_json; ?>,
-        datasets: [{
-          label: "Total Booking Amount monthly",
-          borderColor: "#1d7af3",
-          pointBorderColor: "#FFF",
-          pointBackgroundColor: "#1d7af3",
-          pointBorderWidth: 2,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 1,
-          pointRadius: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          borderWidth: 2,
-          data: <?php echo $data_json; ?>,
-        }]
-      },
-      options: {
-        maintainAspectRatio: !1,
-        legend: {
-          display: !1
-        },
-        animation: {
-          easing: "easeInOutBack"
-        },
-        scales: {
-          yAxes: [{
-            display: !1,
-            ticks: {
-              fontColor: "rgba(0,0,0,0.5)",
-              fontStyle: "bold",
-              beginAtZero: !0,
-              maxTicksLimit: 10,
-              padding: 0
-            },
-            gridLines: {
-              drawTicks: !1,
-              display: !1
-            }
-          }],
-          xAxes: [{
-            display: !1,
-            gridLines: {
-              zeroLineColor: "transparent"
-            },
-            ticks: {
-              padding: -20,
-              fontColor: "rgba(255,255,255,0.2)",
-              fontStyle: "bold"
-            }
-          }]
-        }
-      }
-    });
-  </script>
-  <script>
-    var pieChart = document.getElementById('dailySalesChart').getContext('2d');
-
-    function getRandomColor() {
-      return '#' + Math.floor(Math.random() * 16777215).toString(16);
-    }
-
-    var roomNames = <?php echo $roomNames_json; ?>;
-    var roomQuantities = <?php echo $quantities_json; ?>;
-
-    
-    var roomColors = roomNames.map(() => getRandomColor());
-
-    var myPieChart = new Chart(pieChart, {
-      type: "pie",
-      data: {
-        datasets: [{
-          data: roomQuantities,
-          backgroundColor: roomColors,
-          borderWidth: 0,
-        }, ],
-        labels: roomNames,
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          position: "bottom",
-          labels: {
-            fontColor: "rgb(250, 250, 250)",
-            fontSize: 11,
-            usePointStyle: true,
-            padding: 20,
-          },
-        },
-        pieceLabel: {
-          render: "percentage",
-          fontColor: "white",
-          fontSize: 14,
-        },
-        tooltips: false,
-        layout: {
-          padding: {
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: 20,
-          },
-        },
-      },
-    });
-  </script>
 
 
 </body>
