@@ -70,21 +70,20 @@ include './traitement/booking.php'
                                                         <div class="form-button-action">
                                                             <input type="hidden" name="bookingID" value="<?php echo htmlspecialchars($reservation['BookingID']); ?>">
                                                             <button class="btn btn-link btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#viewBooking"
-        data-name="<?php echo htmlspecialchars($reservation['GuestName'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-phone="<?php echo htmlspecialchars($reservation['GuestPhone'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-nationality="<?php echo htmlspecialchars($reservation['GuestNationality'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-email="<?php echo htmlspecialchars($reservation['GuestEmail'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-passport-number="<?php echo htmlspecialchars($reservation['GuestPassportNumber'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-date-of-birth="<?php echo htmlspecialchars($reservation['GuestDateOfBirth'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-gender="<?php echo htmlspecialchars($reservation['GuestGender'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-address="<?php echo htmlspecialchars($reservation['GuestAddress'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-checkin-date="<?php echo htmlspecialchars($reservation['CheckInDate'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-checkout-date="<?php echo htmlspecialchars($reservation['CheckOutDate'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-room-name="<?php echo htmlspecialchars($reservation['RoomName'], ENT_QUOTES, 'UTF-8'); ?>"
-        data-quantity="<?php echo htmlspecialchars($reservation['RoomQuantity'], ENT_QUOTES, 'UTF-8'); ?>"
-        >
+                                                                data-name="<?php echo htmlspecialchars($reservation['GuestName'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-phone="<?php echo htmlspecialchars($reservation['GuestPhone'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-nationality="<?php echo htmlspecialchars($reservation['GuestNationality'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-email="<?php echo htmlspecialchars($reservation['GuestEmail'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-passport-number="<?php echo htmlspecialchars($reservation['GuestPassportNumber'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-date-of-birth="<?php echo htmlspecialchars($reservation['GuestDateOfBirth'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-gender="<?php echo htmlspecialchars($reservation['GuestGender'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-address="<?php echo htmlspecialchars($reservation['GuestAddress'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-checkin-date="<?php echo htmlspecialchars($reservation['CheckInDate'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-checkout-date="<?php echo htmlspecialchars($reservation['CheckOutDate'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-room-name="<?php echo htmlspecialchars($reservation['RoomName'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                                data-quantity="<?php echo htmlspecialchars($reservation['RoomQuantity'], ENT_QUOTES, 'UTF-8'); ?>">
 
-                                                                <i class="fa fa-edit"></i>
+                                                                <i class="fas fa-eye"></i>
                                                             </button>
                                                             <button type="submit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" name="delete" data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
@@ -216,12 +215,7 @@ include './traitement/booking.php'
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Quantity</label>
-                                                            <input name="quantity" class="form-control" type="number" id="html5-number-input" min="1" />
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
 
                                                 <h4>Add service</h4>

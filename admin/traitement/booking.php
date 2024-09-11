@@ -71,11 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     $checkInDate = mysqli_real_escape_string($conn, $_POST['checkInDate']);
     $checkOutDate = mysqli_real_escape_string($conn, $_POST['checkOutDate']);
     $roomID = mysqli_real_escape_string($conn, $_POST['roomID']);
-    $quantity = mysqli_real_escape_string($conn, $_POST['quantity']); // Quantity of rooms booked
     $services = isset($_POST['services']) ? $_POST['services'] : [];
 
     // Validate required fields
-    if (empty($checkInDate) || empty($checkOutDate) || empty($roomID) || empty($quantity)) {
+    if (empty($checkInDate) || empty($checkOutDate) || empty($roomID)) {
         die('Please fill in all required fields.');
     }
 
@@ -108,20 +107,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
         }
     }
 
-    // Fetch room price and quantity
-    $query = "SELECT Price, Quantity FROM rooms WHERE RoomID = '$roomID'";
+    // Fetch room price
+    $query = "SELECT Price FROM rooms WHERE RoomID = '$roomID'";
     $result = mysqli_query($conn, $query);
     if (!$result) {
         die("Error fetching room details: " . mysqli_error($conn));
     }
     $room = mysqli_fetch_assoc($result);
     $roomPrice = $room['Price'];
-    $roomQuantity = $room['Quantity'];
-
-    // Check if enough rooms are available
-    if ($roomQuantity < $quantity) {
-        die("Not enough rooms available.");
-    }
 
     // Calculate the number of days booked
     $date1 = new DateTime($checkInDate);
@@ -129,8 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
     $interval = $date1->diff($date2);
     $numDays = $interval->days;
 
-    // Calculate total amount for rooms
-    $totalAmount = $roomPrice * $quantity * $numDays;
+    // Calculate total amount for the room
+    $totalAmount = $roomPrice * $numDays;
 
     // Collect and add services if any
     if (!empty($services)) {
@@ -138,12 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
             $query = "SELECT Price FROM service WHERE ServiceID = '$serviceID'";
             $result = mysqli_query($conn, $query);
             if ($result) {
-                $date1 = new DateTime($checkInDate);
-                $date2 = new DateTime($checkOutDate);
-                $interval = $date1->diff($date2);
-                $numDays = $interval->days;
                 $service = mysqli_fetch_assoc($result);
-                $totalAmount += $service['Price'] * $numDays ;
+                $totalAmount += $service['Price'] * $numDays;
             } else {
                 die("Error fetching service details: " . mysqli_error($conn));
             }
@@ -165,19 +154,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
             die("Error inserting billing information: " . mysqli_error($conn));
         }
 
-        // Decrease the quantity of available rooms
-        $newRoomQuantity = $roomQuantity - $quantity;
-        $query = "UPDATE rooms SET Quantity = '$newRoomQuantity' WHERE RoomID = '$roomID'";
-        if (!mysqli_query($conn, $query)) {
-            die("Error updating room quantity: " . mysqli_error($conn));
-        }
-
         header('Location: ../booking.php');
         exit;
     } else {
         die("Error inserting booking information: " . mysqli_error($conn));
     }
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     // Delete booking information

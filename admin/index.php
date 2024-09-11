@@ -153,30 +153,30 @@ include './traitement/dashboard.php';
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card card-primary card-round">
+            <div class="card card-gray card-round">
               <div class="card-header">
                 <div class="card-head-row">
-                  <div class="card-title">Total Rooms</div>
-                  <div class="card-tools">
-                    <div class="dropdown">
-                      <button class="btn btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="card-title">Total Rooms Disponibles</div>
+                  <div class="card-tools ">
+                    <div class="dropdown bg-primary">
+                      <button class="btn btn-primary btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Export
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-light" href="#">Action</a>
+                        <a class="dropdown-item text-light" href="#">Another action</a>
+                        <a class="dropdown-item text-light" href="#">Something else here</a>
                       </div>
                     </div>
                   </div>
                 </div>
 
               </div>
-              <div class="card-body pb-0">
+              <div class="card-body pb-0 ">
                 <div class="mb-4 mt-2">
                   <h1><?php echo $totalRooms; ?> rooms</h1>
                 </div>
-                <div class="pull-in">
+                <div class="pull-in ">
                   <canvas id="dailySalesChart"></canvas>
                 </div>
               </div>

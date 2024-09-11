@@ -80,6 +80,7 @@
                 yAxes: [{
                     display: !1,
                     ticks: {
+                        position: "bottom",
                         fontColor: "rgba(0,0,0,0.5)",
                         fontStyle: "bold",
                         beginAtZero: !0,
