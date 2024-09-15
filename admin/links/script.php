@@ -34,7 +34,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        var monthlyGuests = <?php echo $monthlyGuests_json; ?>;
+        let monthlyGuests = <?php echo $monthlyGuests_json; ?>;
 
         $("#lineChart").sparkline(monthlyGuests, {
             type: "line",
@@ -47,9 +47,9 @@
     });
 </script>
 <script>
-    var lineChart = document.getElementById('statisticsChart').getContext('2d');
+    let lineChart = document.getElementById('statisticsChart').getContext('2d');
 
-    var myLineChart = new Chart(lineChart, {
+    let myLineChart = new Chart(lineChart, {
         type: "line",
         data: {
             labels: <?php echo $labels_json; ?>,
@@ -108,19 +108,19 @@
     });
 </script>
 <script>
-    var pieChart = document.getElementById('dailySalesChart').getContext('2d');
+    let pieChart = document.getElementById('dailySalesChart').getContext('2d');
 
     function getRandomColor() {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
 
-    var roomNames = <?php echo $roomNames_json; ?>;
-    var roomQuantities = <?php echo $quantities_json; ?>;
+    let roomNames = <?php echo $roomNames_json; ?>;
+    let roomQuantities = <?php echo $quantities_json; ?>;
 
 
-    var roomColors = roomNames.map(() => getRandomColor());
+    let roomColors = roomNames.map(() => getRandomColor());
 
-    var myPieChart = new Chart(pieChart, {
+    let myPieChart = new Chart(pieChart, {
         type: "pie",
         data: {
             datasets: [{
@@ -161,25 +161,25 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var editRoomModal = document.getElementById('EditRoomModal');
+        let editRoomModal = document.getElementById('EditRoomModal');
         editRoomModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget;
-            var roomID = button.getAttribute('data-id');
-            var name = button.getAttribute('data-room-name');
-            var type = button.getAttribute('data-room-type');
-            var capacity = button.getAttribute('data-capacity');
-            var price = button.getAttribute('data-price');
-            var description = button.getAttribute('data-description');
-            var numberBed = button.getAttribute('data-number-bed');
-            var typeBed = button.getAttribute('data-type-bed');
-            var quantity = button.getAttribute('data-quantity');
-            var disponibility = button.getAttribute('data-disponibility') === '1';
-            var wifi = button.getAttribute('data-wifi') === '1';
-            var tv = button.getAttribute('data-tv') === '1';
-            var climatiseur = button.getAttribute('data-climatiseur') === '1';
-            var freeDrink = button.getAttribute('data-free-drink') === '1';
+            let button = event.relatedTarget;
+            let roomID = button.getAttribute('data-id');
+            let name = button.getAttribute('data-room-name');
+            let type = button.getAttribute('data-room-type');
+            let capacity = button.getAttribute('data-capacity');
+            let price = button.getAttribute('data-price');
+            let description = button.getAttribute('data-description');
+            let numberBed = button.getAttribute('data-number-bed');
+            let typeBed = button.getAttribute('data-type-bed');
+            let quantity = button.getAttribute('data-quantity');
+            let disponibility = button.getAttribute('data-disponibility') === '1';
+            let wifi = button.getAttribute('data-wifi') === '1';
+            let tv = button.getAttribute('data-tv') === '1';
+            let climatiseur = button.getAttribute('data-climatiseur') === '1';
+            let freeDrink = button.getAttribute('data-free-drink') === '1';
 
-            var modal = editRoomModal;
+            let modal = editRoomModal;
             modal.querySelector('#editRoomID').value = roomID;
             modal.querySelector('#editRoomName').value = name;
             modal.querySelector('#editType').value = type;
@@ -199,23 +199,23 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var showModal = document.getElementById('show');
+        let showModal = document.getElementById('show');
         showModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget;
+            let button = event.relatedTarget;
 
             // Extract info from data-* attributes
-            var roomName = button.getAttribute('data-room-name');
-            var roomType = button.getAttribute('data-room-type');
-            var roomCapacity = button.getAttribute('data-capacity');
-            var roomPrice = button.getAttribute('data-price');
-            var roomDescription = button.getAttribute('data-description');
-            var roomNumberBed = button.getAttribute('data-number-bed');
-            var roomBedType = button.getAttribute('data-type-bed');
-            var roomQuantity = button.getAttribute('data-quantity');
+            let roomName = button.getAttribute('data-room-name');
+            let roomType = button.getAttribute('data-room-type');
+            let roomCapacity = button.getAttribute('data-capacity');
+            let roomPrice = button.getAttribute('data-price');
+            let roomDescription = button.getAttribute('data-description');
+            let roomNumberBed = button.getAttribute('data-number-bed');
+            let roomBedType = button.getAttribute('data-type-bed');
+            let roomQuantity = button.getAttribute('data-quantity');
 
             // Update the modal's content.
-            var modalTitle = showModal.querySelector('.modal-title');
-            var modalBody = showModal.querySelector('.room-info');
+            let modalTitle = showModal.querySelector('.modal-title');
+            let modalBody = showModal.querySelector('.room-info');
             modalTitle.textContent = roomName;
             modalBody.querySelector('#roomName').textContent = roomName;
             modalBody.querySelector('#roomType').textContent = roomType;
@@ -227,7 +227,7 @@
             modalBody.querySelector('#roomquantity').textContent = roomQuantity;
 
             // Optional: Set image src if available
-            var roomImage = button.getAttribute('data-room-image');
+            let roomImage = button.getAttribute('data-room-image');
             if (roomImage) {
                 modalBody.querySelector('#roomImage').src = '../img/rooms/' + roomImage;
             }
@@ -248,12 +248,12 @@
 
 
         // Show the modal
-        var modal = document.getElementById('show');
+        let modal = document.getElementById('show');
         modal.style.display = 'block';
     }
 
     function closeModal2() {
-        var modal = document.getElementById('show');
+        let modal = document.getElementById('show');
         modal.style.display = 'none';
     }
 </script>
@@ -261,23 +261,23 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        var editModal = document.getElementById('Editstaff');
+        let editModal = document.getElementById('Editstaff');
         editModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget; // Button that triggered the modal
-            var staffId = button.getAttribute('data-id2');
-            var staffName = button.getAttribute('data-name2');
-            var staffEmail = button.getAttribute('data-email2');
-            var staffPhone = button.getAttribute('data-phone2');
-            var staffPassword = button.getAttribute('data-password2');
-            var staffPosition = button.getAttribute('data-position2');
+            let button = event.relatedTarget; // Button that triggered the modal
+            let staffId = button.getAttribute('data-id2');
+            let staffName = button.getAttribute('data-name2');
+            let staffEmail = button.getAttribute('data-email2');
+            let staffPhone = button.getAttribute('data-phone2');
+            let staffPassword = button.getAttribute('data-password2');
+            let staffPosition = button.getAttribute('data-position2');
 
             // Update the modal's content.
-            var modalStaffID = editModal.querySelector('#editstaffId');
-            var modalStaffName = editModal.querySelector('#editname');
-            var modalStaffEmail = editModal.querySelector('#editemail');
-            var modalStaffPhone = editModal.querySelector('#editphone');
-            var modalStaffPassword = editModal.querySelector('#editpassword');
-            var modalStaffPosition = editModal.querySelector('#editposition');
+            let modalStaffID = editModal.querySelector('#editstaffId');
+            let modalStaffName = editModal.querySelector('#editname');
+            let modalStaffEmail = editModal.querySelector('#editemail');
+            let modalStaffPhone = editModal.querySelector('#editphone');
+            let modalStaffPassword = editModal.querySelector('#editpassword');
+            let modalStaffPosition = editModal.querySelector('#editposition');
 
             modalStaffID.value = staffId;
             modalStaffName.value = staffName;
@@ -290,29 +290,29 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        var editModal = document.getElementById('Editguests');
+        let editModal = document.getElementById('Editguests');
         editModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget; // Button that triggered the modal
-            var guestId = button.getAttribute('data-id');
-            var guestName = button.getAttribute('data-name');
-            var guestEmail = button.getAttribute('data-email');
-            var guestPhone = button.getAttribute('data-phone');
-            var guestAddress = button.getAttribute('data-address');
-            var guestNationality = button.getAttribute('data-nationality');
-            var guestPassportNumber = button.getAttribute('data-passport');
-            var guestDateOfBirth = button.getAttribute('data-dateofbirth');
-            var guestGender = button.getAttribute('data-gender');
+            let button = event.relatedTarget; // Button that triggered the modal
+            let guestId = button.getAttribute('data-id');
+            let guestName = button.getAttribute('data-name');
+            let guestEmail = button.getAttribute('data-email');
+            let guestPhone = button.getAttribute('data-phone');
+            let guestAddress = button.getAttribute('data-address');
+            let guestNationality = button.getAttribute('data-nationality');
+            let guestPassportNumber = button.getAttribute('data-passport');
+            let guestDateOfBirth = button.getAttribute('data-dateofbirth');
+            let guestGender = button.getAttribute('data-gender');
 
             // Update the modal's content.
-            var modalGuestID = editModal.querySelector('#editguestId');
-            var modalGuestName = editModal.querySelector('#editName');
-            var modalGuestEmail = editModal.querySelector('#editEmail');
-            var modalGuestPhone = editModal.querySelector('#editPhone');
-            var modalGuestAddress = editModal.querySelector('#editAddress');
-            var modalGuestNationality = editModal.querySelector('#editNationality');
-            var modalGuestPassportNumber = editModal.querySelector('#editPassportNumber');
-            var modalGuestDateOfBirth = editModal.querySelector('#editDateOfBirth');
-            var modalGuestGender = editModal.querySelector('#editGender');
+            let modalGuestID = editModal.querySelector('#editguestId');
+            let modalGuestName = editModal.querySelector('#editName');
+            let modalGuestEmail = editModal.querySelector('#editEmail');
+            let modalGuestPhone = editModal.querySelector('#editPhone');
+            let modalGuestAddress = editModal.querySelector('#editAddress');
+            let modalGuestNationality = editModal.querySelector('#editNationality');
+            let modalGuestPassportNumber = editModal.querySelector('#editPassportNumber');
+            let modalGuestDateOfBirth = editModal.querySelector('#editDateOfBirth');
+            let modalGuestGender = editModal.querySelector('#editGender');
 
             modalGuestID.value = guestId;
             modalGuestName.value = guestName;
@@ -328,11 +328,11 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        var viewModal = document.getElementById('viewBooking');
+        let viewModal = document.getElementById('viewBooking');
         viewModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget; // Button that triggered the modal
+            let button = event.relatedTarget; // Button that triggered the modal
 
-            var bookingDetails = {
+            let bookingDetails = {
                 name: button.getAttribute('data-name'),
                 phone: button.getAttribute('data-phone'),
                 nationality: button.getAttribute('data-nationality'),
@@ -349,7 +349,7 @@
             };
 
             // Update the modal's content
-            var modalElements = {
+            let modalElements = {
                 name: viewModal.querySelector('#viewName'),
                 phone: viewModal.querySelector('#viewPhone'),
                 nationality: viewModal.querySelector('#viewNationality'),
@@ -385,11 +385,11 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        var billingModal = document.getElementById('addRowModal');
+        let billingModal = document.getElementById('addRowModal');
         billingModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget; // Button that triggered the modal
+            let button = event.relatedTarget; // Button that triggered the modal
 
-            var billingDetails = {
+            let billingDetails = {
                 name: button.getAttribute('data-name'),
                 email: button.getAttribute('data-email'),
                 status: button.getAttribute('data-status'),
@@ -399,7 +399,7 @@
             };
 
             // Update the modal's content
-            var modalElements = {
+            let modalElements = {
                 name: billingModal.querySelector('#guestName'),
                 email: billingModal.querySelector('#guestEmail'),
                 status: billingModal.querySelector('#billingStatus'),
